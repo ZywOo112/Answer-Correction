@@ -1,0 +1,27 @@
+name: Compile LaTeX Document
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: 
+      image: danteev/texlive:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 安装字体
+        run: |
+          tlmgr update --self
+          tlmgr install fandol
+          
+      - name: 编译 LaTeX 文档 
+        working-directory: "习题解答"
+        run: |
+          latexmk -xelatex -interaction=nonstopmode -file-line-error "付强习题解答.tex"
+          
+      - name: 上传生成的PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: 付强习题解答-PDF
+          path: "习题解答/付强习题解答.pdf"
