@@ -1,0 +1,36 @@
+name: Spell Check
+on: [push]
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install cSpell
+        run: npm install -g cspell
+        
+      - name: Run spelling check
+        run: |
+          cspell --config .cspell.json "**/*.{tex,md,txt}" \
+            --no-progress \
+            --no-summary \
+            --unique \
+            --must-find-files
+          cspell --config .cspell.json "**/*.{tex,md,txt}" \
+            --no-progress \
+            > cspell-report.txt
+            
+      - name: Upload spelling report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: spelling-report
+          path: cspell-report.txt
