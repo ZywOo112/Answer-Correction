@@ -1,0 +1,25 @@
+{
+  "version": "0.2",
+  "language": "en,zh",
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./.cspell-dict.txt",
+      "description": "项目专有名词词典"
+    }
+  ],
+  "dictionaries": ["project-words"],
+  "ignorePaths": [
+    "**/output/**",
+    "**/*.log",
+    "**/*.aux",
+    "**/*.pdf",
+    "**/node_modules/**"
+  ],
+  "words": [
+    "XeLaTeX",
+    "ctex",
+    "付强",
+    "习题解答"
+  ]
+}
