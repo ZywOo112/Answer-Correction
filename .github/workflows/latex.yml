@@ -12,7 +12,7 @@ jobs:
         
       - name: Compile LaTeX document
         run: |
-          latexmk -pdf -interaction=nonstopmode -file-line-error main.tex
+          latexmk -pdf -interaction=nonstopmode -file-line-error 付强习题解答.tex
           
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
