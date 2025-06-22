@@ -5,17 +5,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: 
-      image: danteev/texlive:latest  
+      image: danteev/texlive:latest 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: Compile LaTeX document
+      - name:  Upload the Latex document
+        working-directory: "习题解答"  
         run: |
-          latexmk -pdf -interaction=nonstopmode -file-line-error 付强习题解答.tex
+          latexmk -pdf -interaction=nonstopmode -file-line-error "付强习题解答.tex"
           
-      - name: Upload PDF artifact
+      - name: Upload the generated PDF
         uses: actions/upload-artifact@v4
         with:
-          name: compiled-pdf
-          path: main.pdf
+          name: 付强习题解答-PDF
+          path: "习题解答/付强习题解答.pdf"  
