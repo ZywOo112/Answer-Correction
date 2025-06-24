@@ -12,25 +12,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: 'none'
           
       - name: Install cSpell
-        run: npm install -g cspell
+        run: npm install -g cSpell
         
       - name: Run spelling check
         run: |
-          cspell --config .cspell.json "**/*.{tex,md,txt}" \
+          cSpell --config .cSpell.json "**/*.{tex,md,txt}" \
             --no-progress \
             --no-summary \
             --unique \
             --must-find-files
-          cspell --config .cspell.json "**/*.{tex,md,txt}" \
+          cSpell --config .cSpell.json "**/*.{tex,md,txt}" \
             --no-progress \
-            > cspell-report.txt
+            > cSpell-report.txt
             
       - name: Upload spelling report
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: spelling-report
-          path: cspell-report.txt
+          path: cSpell-report.txt
