@@ -5,7 +5,7 @@
     {
       "name": "project-words",
       "path": "./.cspell-dict.txt",
-      "description": "项目专有名词词典"
+      "description": "Proper Noun"
     }
   ],
   "dictionaries": ["project-words"],
@@ -19,7 +19,6 @@
   "words": [
     "XeLaTeX",
     "ctex",
-    "付强",
-    "习题解答"
+    "Fu Qiang"
   ]
 }
