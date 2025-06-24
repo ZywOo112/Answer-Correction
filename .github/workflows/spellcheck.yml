@@ -7,34 +7,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+
+      - name: Run cSpell with Action
+        uses: streetsidesoftware/cspell-action@v2
         with:
-          node-version: '20'
+          config: ./.cspell.json
+          strict: true
+          check_dot_files: true
+          incremental_files_only: false
           
-      - name: Install cSpell
-        run: npm install -g cSpell
-        
-      - name: Run spelling check
-        run: |
-          cSpell --config .cSpell.json "**/*.{tex,md,txt}" \
-            --no-progress \
-            --no-summary \
-            --unique \
-            --must-find-files
-          cSpell --config .cSpell.json "**/*.{tex,md,txt}" \
-            --no-progress \
-            > cSpell-report.txt
-            
+          
       - name: Upload spelling report
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: spelling-report
-          path: cSpell-report.txt
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: spelling-report
-          path: cSpell-report.txt
+          path: cspell-report.txt    
