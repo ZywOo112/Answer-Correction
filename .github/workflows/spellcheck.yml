@@ -12,7 +12,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'none'
           
       - name: Install cSpell
         run: npm install -g cSpell
@@ -29,6 +28,11 @@ jobs:
             > cSpell-report.txt
             
       - name: Upload spelling report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: spelling-report
+          path: cSpell-report.txt
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
