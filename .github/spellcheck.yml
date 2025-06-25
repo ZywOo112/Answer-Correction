@@ -1,0 +1,7 @@
+matrix:
+  - name: Markdown
+    aspell:
+      lang: en
+    dictionary:
+      wordlists:
+        - .github/wordlist.txt
