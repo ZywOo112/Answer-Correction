@@ -1,0 +1,55 @@
+name: Spell Check
+
+on: [push]
+
+jobs:
+  spell-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Create cspell config
+      run: |
+
+        rm -f .cspell.json || true
+        
+
+        cat << 'EOF' > $GITHUB_WORKSPACE/.cspell.json
+        {
+          "version": "0.2",
+          "language": "en",
+          "words": [
+           "Lipschitz", "Schwarz", "Subgradients", "subgradients", "subgradient", "inequation", "Chernoff", "eigenspaces", "injective", "nilpotent", "Frobenius", "nonsingular", "bijective", "Cayley", "Chebyshev", "Chebyshev's", "Darboux", "Darboux's", "eigenspace"
+          ],
+          "ignorePaths": [
+            "node_modules/**",
+            "package*.json",
+            "yarn.lock",
+            "*.log",
+            "*.min.*",
+            "**/.git/**"
+          ]
+        }
+        EOF
+        
+        echo "Generated cspell config:"
+        cat $GITHUB_WORKSPACE/.cspell.json
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install cspell
+      run: npm install -g cspell
+
+    - name: Run spell check
+      run: |
+
+        cspell "**/*.{md,txt,tex}" \
+          --config "$GITHUB_WORKSPACE/.cspell.json" \
+          --no-progress \
+          --no-summary \
+          --relative \
+          --must-find-files

@@ -1,24 +1,19 @@
 {
   "version": "0.2",
-  "language": "en,zh",
-  "dictionaryDefinitions": [
-    {
-      "name": "project-words",
-      "path": "./.cspell-dict.txt",
-      "description": "Proper Noun"
-    }
-  ],
-  "dictionaries": ["project-words"],
+  "language": "en",
+  "words": ["Fu Qiang",
+  "Lipschitz", "Schwarz", "Subgradients", 
+  "Chernoff", "Frobenius", "Cayley",
+  "Chebyshev", "Darboux", "injective",
+  "nilpotent", "eigenspace"
+],
   "ignorePaths": [
-    "**/output/**",
-    "**/*.log",
-    "**/*.aux",
-    "**/*.pdf",
-    "**/node_modules/**"
-  ],
-  "words": [
-    "XeLaTeX",
-    "ctex",
-    "Fu Qiang"
+    "node_modules/**",
+    "package*.json",
+    "yarn.lock",
+    "*.log",
+    "*.out*"
+    "*.synctex*"
+    "*.aux*"
   ]
 }
