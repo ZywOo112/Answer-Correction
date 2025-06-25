@@ -10,18 +10,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: 安装字体
+      - name: Configure TeX Live and update
         run: |
+
+          tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
+          
+
           tlmgr update --self
+          
+          tlmgr --version
+          
+      - name: Install fonts
+        run: |
+
           tlmgr install fandol
           
-      - name: 编译 LaTeX 文档 
-        working-directory: "习题解答"
+      - name: Compile LaTeX document 
         run: |
-          latexmk -xelatex -interaction=nonstopmode -file-line-error "付强习题解答.tex"
+          cd "Problem Solutions(Fu Qiang)"
+          latexmk -xelatex -interaction=nonstopmode -file-line-error "Problem Solutions(Fu Qiang).tex"
           
-      - name: 上传生成的PDF
+      - name: Upload the generated PDF
         uses: actions/upload-artifact@v4
         with:
-          name: 付强习题解答-PDF
-          path: "习题解答/付强习题解答.pdf"
+          name: Problem-Solutions-Fu-Qiang-PDF
+          path: "Problem Solutions(Fu Qiang)/Problem Solutions(Fu Qiang).pdf"
