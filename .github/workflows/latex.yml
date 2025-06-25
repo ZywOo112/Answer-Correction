@@ -10,15 +10,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: Configure TeX Live mirror and update
-        run: |
-          tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
-          tlmgr update --self
-          tlmgr update --all
-          tlmgr --version
-          
       - name: Install fonts
         run: |
+          tlmgr update --self
           tlmgr install fandol
           
       - name: Compile LaTeX document 
