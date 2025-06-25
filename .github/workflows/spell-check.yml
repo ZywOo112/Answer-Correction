@@ -1,26 +1,33 @@
 name: Spell Check
 
-on: [push]  
+on: [push]
 
 jobs:
   spell-check:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4  
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  
+
+    - name: Verify config exists
+      run: |
+        ls -la .cspell.json || echo "::error::.cspell.json not found!"
 
     - name: Setup Node.js
-      uses: actions/setup-node@v4  
+      uses: actions/setup-node@v4
       with:
         node-version: 20
 
-    - name: Install cspell 
-      run: npm install -g cspell  
+    - name: Install cspell
+      run: npm install -g cspell
 
     - name: Run spell check
       run: | 
+ 
         cspell "**/*.{md,txt,tex}" \
-          --config .cspell.json \
+          --config "$GITHUB_WORKSPACE/.cspell.json" \
           --no-progress \
           --no-summary
           --relative \
