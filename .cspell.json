@@ -1,0 +1,14 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": ["Fu Qiang"],
+  "ignorePaths": [
+    "node_modules/**",
+    "package*.json",
+    "yarn.lock",
+    "*.log",
+    "*.out*"
+    "*.synctex*"
+    "*.aux*"
+  ]
+}
