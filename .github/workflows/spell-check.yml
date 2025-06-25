@@ -1,12 +1,7 @@
 name: Spell Check
 
-on:
-  push:
-    branches: [ main, master ]  # 监控的分支
-    paths:                      
-      - '**.md'
-      - '**.txt'
-      - '**.tex'
+on:[push]
+   
 
 jobs:
   spell-check:
