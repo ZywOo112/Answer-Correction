@@ -15,7 +15,9 @@ jobs:
    
           tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
           
-          tlmgr update --self --clean
+          tlmgr update --self 
+          
+          tlmgr update --all
           
           tlmgr --version
           
