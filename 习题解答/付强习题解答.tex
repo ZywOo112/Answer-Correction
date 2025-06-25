@@ -1,18 +1,36 @@
-\documentclass{article}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
-\usepackage{xcolor}
-\usepackage[UTF8]{ctex}
-\title{付强习题解答}
-\author{}
-\date{}
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, bm, color, framed, graphicx, hyperref, mathrsfs,extarrows}
+\title{\textbf{Problem Solutions}}
+\author{Fu Qiang}
+\date{} 
+\linespread{1.5}
+\definecolor{shadecolor}{RGB}{241, 241, 255} 
+\definecolor{RED}{RGB}{255, 0, 0}
+\newcounter{problemname}
+
+
+\newenvironment{problem}{\begin{shaded}\stepcounter{problemname}\par\noindent\textbf{Problem\arabic{problemname}. }}{\end{shaded}\par}
+\newenvironment{solution}{\par\noindent\textbf{Solution. }}{\par}
+
 \begin{document}
 	
-	\maketitle
+\maketitle
 	
-\section{}
-\subsection*{(a)}
+\begin{problem}
+\noindent Let $ f $ be a continuously differentiable function on $ \mathbb{R}^n $. Suppose there exists a positive constant $ L $ such that $ \nabla f $ is $ L $-Lipschitz continuous, namely
+$$ \|\nabla f(x) - \nabla f(y)\|_2 \leq L\|x - y\|_2 \quad \text{for all } x,y \in \mathbb{R}^n. $$
+	
+\noindent (a) Prove that
+$$ \inf_{y \in \mathbb{R}^n} f(y) \leq f(x) - \frac{1}{2L}\|\nabla f(x)\|_2^2 \quad \text{for all } x \in \mathbb{R}^n. $$
+	
+\noindent (b) If in addition $ f $ is convex, prove that
+$$ f(x) - f(y) - [\nabla f(x)]^T(x - y) \leq -\frac{1}{2L}\|\nabla f(x) - \nabla f(y)\|_2^2. $$
+\end{problem}
+
+\begin{solution}
+	
+\textbf{(a)}
 
 \textbf{Lemma}: $ f $ is a continuously differentiable function on $\mathbb{R}^n $. Then for any $ \mathbf{x}, \mathbf{y} \in \mathbb{R}^n$, we have
 $$
@@ -86,7 +104,9 @@ $$
 
 This inequality holds for any $ \mathbf{x} \in \mathbb{R}^n $. 
 
-\subsection*{(b)}
+\vspace{12pt}
+
+\textbf{(b)}
 Fix $ \mathbf{x} \in \mathbb{R}^n $. Define the function
 $$
 p(\mathbf{y})=f(\mathbf{y})-\nabla f(\mathbf{x})^T \mathbf{y}
@@ -100,7 +120,7 @@ $$
 \nabla p(\mathbf{x})=0
 $$
 
- Since $ p $ is a convex function and $ \nabla p(\mathbf{x}) = 0 $, $ p $ attains the global minimum at $ \mathbf{x} $, that is
+Since $ p $ is a convex function and $ \nabla p(\mathbf{x}) = 0 $, $ p $ attains the global minimum at $ \mathbf{x} $, that is
 $$
 \inf_{\mathbf{z} \in \mathbb{R}^n}p(\mathbf{z})=p(\mathbf{x})
 $$
@@ -109,7 +129,7 @@ Problem (a) shows that
 $$
 \inf_{\mathbf{z} \in \mathbb{R}^n}p(\mathbf{z})\leq p(\mathbf{y})-\frac{1}{2L}\|\nabla p(\mathbf{y})\|_2^2,\quad \forall \mathbf{y} \in \mathbb{R}^n
 $$
-	
+
 Substitute $ \inf_{\mathbf{z} \in \mathbb{R}^n}p(\mathbf{z})=p(\mathbf{x}) $, we get
 $$
 p(\mathbf{x})\leq p(\mathbf{y})-\frac{1}{2L}\|\nabla p(\mathbf{y})\|_2^2
@@ -134,8 +154,30 @@ $$
 {f(\mathbf{x}) - f(\mathbf{y}) - \nabla f(\mathbf{x})^T (\mathbf{x} - \mathbf{y}) \leq -\frac{1}{2L} \|\nabla f(\mathbf{x}) - \nabla f(\mathbf{y})\|_2^2}
 $$
 
-\section{}
-\subsection*{(a) $\Rightarrow$ (b)}
+\end{solution}
+
+\begin{problem}
+	
+\noindent Given a symmetric matrix $ A \in \mathbb{R}^{n \times n} $ and a vector $ b \in \mathbb{R}^n $, define
+$$ q(x) = \frac{1}{2}x^T Ax - b^T x, \quad x \in \mathbb{R}^n. $$
+	
+\noindent Prove that the following statements are equivalent.
+	
+\noindent (a) $ q $ is bounded from below.
+	
+\noindent (b) $ A \succeq 0 $ and $ b \in \text{range}(A) $.
+	
+\noindent (c) $ q $ has a local minimum.
+	
+\noindent (d) $ q $ has a global minimum.
+	
+\end{problem}
+
+\begin{solution}
+
+\vspace{12pt}
+
+\textbf{(a) $\Rightarrow$ (b)}
 
 Assume that $ A $ is not positive semi - definite. Then there exists a vector $ \mathbf{v} \in \mathbb{R}^n $, $ \mathbf{v} \neq \mathbf{0} $, such that $ \mathbf{v}^TA\mathbf{v}< 0 $. Consider $ \mathbf{x}_t = t\mathbf{v} $ where $ t \in \mathbb{R} $. Substitute it into $ q $:
 $$
@@ -161,25 +203,41 @@ $$
 
 When $ t \to \infty $, $ q(tB_n)\to -\infty $, which contradicts the fact that $ q $ is bounded below. Therefore, $ B_n=\mathbf{0} $, that is, $ B \in \text{range}(A)$.
 
-\subsection*{(b) $\Rightarrow$ (c)}
+\vspace{12pt}
 
-Assume that $ A \succeq 0 $ and $ B \in \text{range}(A) $. Then there exists $ \mathbf{x}^* \in \mathbb{R}^n $ such that $ A\mathbf{x}^* = B $. Calculate the gradient:
+\textbf{(b) $\Rightarrow$ (c)}
+
+Assume that $ A \succeq 0 $ and $ \mathbf{b} \in \text{range}(A) $. Then there exists $ \mathbf{x}^* \in \mathbb{R}^n $ such that $ A\mathbf{x}^* = \mathbf{b} $. Calculate the gradient:
 $$
-\nabla q(\mathbf{x}) = A\mathbf{x} - B
+\nabla q(\mathbf{x}) = A\mathbf{x} - \mathbf{b}
 $$
 
 At $ \mathbf{x}^* $:
 $$
-\nabla q(\mathbf{x}^*) = A\mathbf{x}^* - B = \mathbf{0}
+\nabla q(\mathbf{x}^*) = A\mathbf{x}^* - \mathbf{b} = \mathbf{0}
 $$
 
-The Hessian matrix is $ \nabla^2 q(\mathbf{x}) = A $, and since $ A \succeq 0 $, the Hessian at $ \mathbf{x}^* $ is positive semi - definite. Therefore, $ \mathbf{x}^* $ is a local minimum point of $ q $. So $ q $ has a local minimum.
+$$
+\nabla^2 q(\mathbf{x}) = A\succeq 0
+$$
 
-\subsection*{(c) $\Rightarrow$ (d)}
+For any direction $ \mathbf{d} \in \mathbb{R}^n $ and sufficiently small $ t > 0 $, at $ \mathbf{x}^* $, we have:
+
+$$q(\mathbf{x}^* + t\mathbf{d}) = q(\mathbf{x}^*) + \underbrace{t(\nabla q(\mathbf{x}^*)^T \mathbf{d})}_{= 0} + \frac{t^2}{2} \mathbf{d}^T A \mathbf{d} + O(t^3)$$
+
+Since $ A \succeq 0 $, we have $ \mathbf{d}^T A \mathbf{d} \geq 0 $. Thus:
+
+$$q(\mathbf{x}^* + t\mathbf{d}) - q(\mathbf{x}^*) = \frac{t^2}{2} \mathbf{d}^T A \mathbf{d} \geq 0$$
+
+Therefore, in a neighborhood of $ \mathbf{x}^* $, $ q(\mathbf{x}) \geq q(\mathbf{x}^*) $, so $ q $ has a local minimum.
+
+\vspace{12pt}
+
+\textbf{(c) $\Rightarrow$ (d)}
 
 Assume that $ \mathbf{x}^* $ is a local minimum point. At $ \mathbf{x}^* $:
 The gradient is zero: $ \nabla q(\mathbf{x}^*) = A\mathbf{x}^* - B = \mathbf{0} $, so $ A\mathbf{x}^* = B $, that is, $ B \in \text{range}(A) $.
-The Hessian matrix $ A $ is positive semi - definite is a local minimum point), so, $ A \succeq 0 $.
+The Hessian matrix $ A $ is positive semi - definite is a local minimum point, so, $ A \succeq 0 $.
 
 From $ A \succeq 0 $ and $ A\mathbf{x}^* = B $, consider the function values:
 $$
@@ -204,14 +262,26 @@ $$
 
 Because $ A \succeq 0 $, we have $ (\mathbf{x} - \mathbf{x}^*)^TA(\mathbf{x} - \mathbf{x}^*) \geq 0 $. So $ q(\mathbf{x}) - q(\mathbf{x}^*) \geq 0 $, that is, $ q(\mathbf{x}) \geq q(\mathbf{x}^*) $ holds for all $ \mathbf{x} \in \mathbb{R}^n $. Therefore, $ \mathbf{x}^* $ is a global minimum point, that is, $ q $ has a global minimum. So $ (c) \Rightarrow (d) $.
 
-\subsection*{(d) $\Rightarrow$ (a)}
-Easy to prove.
+\vspace{12pt}
 
-\section{}
+\textbf{(d) $\Rightarrow$ (a)}
+Easy to prove.
+\end{solution}
+
+
+\begin{problem}
+	
+\noindent Let $ f:\mathbb{R}^n \to \mathbb{R} $ be a convex function. For $ t \in \mathbb{R} $, define
+$$ \mathcal{L}(t)=\{x \in \mathbb{R}^n: f(x) \leq t\} $$
+
+\end{problem}
+
+\begin{solution}
+	
 For $\forall t < t_0$, we can get $\mathcal{L}(t)\subset \mathcal{L}(t_0)$. Because of the Boundedness of $\mathcal{L}(t_0)$, $\mathcal{L}(t)$ is bounded. Therefore, we We just need to prove $\forall t > t_0$, $\mathcal{L}(t)$ is bounded.
- 
+
 Assume that $\exists t_1 > t_0$, such that $\mathcal{L}(t_1)$ is unbounded, namely $\exists \{\mathbf{x}_k \} \subset \mathcal{L}(t_1)$, such that, $\| \mathbf{x}_k\|_2 \rightarrow \infty$. Consider that $\mathbf{x}_0 \in \mathcal{L}(t_0)$ and $\mathbf{x}_k$, let 
- 
+
 $$\mathbf{y}=\lambda\mathbf{x}_0+(1 - \lambda)\mathbf{x}_k , \quad \lambda\in(0,1) 
 $$
 
@@ -220,11 +290,19 @@ $$
 f(\mathbf{y}) \leq\lambda f(\mathbf{x}_0) +(1-\lambda)f(\mathbf{x}_k)\leq\lambda t_0+(1 - \lambda)t_1
 $$
 
-Let $ \lambda = \frac{k-1}{k} $, $ f(\mathbf{y}) \leq \frac{k-1}{k}t_0+ \frac{t_1}{k}$. When $k \rightarrow \infty $, $f(\mathbf{y}) \leq t_0$, namely $\mathbf{y}$ is bounded. But when $k \rightarrow \infty $, $ \|\mathbf{y}\|_2 \rightarrow \| \mathbf{x}_k\|_2 \rightarrow \infty $, this contradicts $\mathbf{y}$ is bounded. Therefore, $\mathcal{L}(t)$ is bounded, when $t_1 > t_0$.
+\textcolor{red}{ Let $ \lambda = \frac{k-1}{k} $, $ f(\mathbf{y}) \leq \frac{k-1}{k}t_0+ \frac{t_1}{k}$. When $k \rightarrow \infty $, $f(\mathbf{y}) \leq t_0$, namely $\mathbf{y}$ is bounded.} But when $k \rightarrow \infty $, $ \|\mathbf{y}\|_2 \rightarrow \| \mathbf{x}_k\|_2 \rightarrow \infty $, this contradicts $\mathbf{y}$ is bounded. Therefore, $\mathcal{L}(t)$ is bounded, when $t_1 > t_0$.
+
+\end{solution}
 
 
-\section{}
- 
+\begin{problem}
+	
+\noindent Let $ f:\mathbb{R}^n \to \mathbb{R} $ be a convex function and $ K \subset \mathbb{R}^n $ be a compact set. Prove that $ f $ is Lipschitz continuous on $ K $.
+	
+\end{problem}
+
+\begin{solution}
+	
 \textbf{Lemma}: Subgradients on a compact set must be bounded.
 
 \textbf{Proof}:
@@ -246,7 +324,9 @@ From $ f(\mathbf{y}) \leq M_\delta $ and $ f(\mathbf{x}) \geq m_\delta $, we can
 $$\delta \|g\| \leq f(\mathbf{y}) - f(\mathbf{x}) \leq \omega \implies \|g\| \leq \frac{\omega}{\delta} \quad \qed
 $$  
 
-For any $ \mathbf{x}, \mathbf{y} \in K $, consider $(1 - t)\mathbf{x} + t\mathbf{y} (t \in [0, 1]) $. By convexity,  there $\exists  g_t \in \partial f((1 - t)\mathbf{x} + t\mathbf{y}) $ such that:
+\vspace{12pt}
+
+For any $ \mathbf{x}, \mathbf{y} \in K $, consider $(1 - t)\mathbf{x} + t\mathbf{y}  \quad (t \in [0, 1]) $. By convexity,  there $\exists  g_t \in \partial f((1 - t)\mathbf{x} + t\mathbf{y}) $ such that:
 $$f(\mathbf{y}) - f(\mathbf{x}) = \int_{0}^{1} \frac{d}{dt}f((1 - t)\mathbf{x} + t\mathbf{y}) dt = \int_{0}^{1} g_t^\top (\mathbf{y} - \mathbf{x}) dt
 $$
 $$
@@ -256,18 +336,27 @@ From the lemma we know the subgradient on $ K $ set is bounded. And
 $$
 |f(\mathbf{y}) - f(\mathbf{x})| \leq \frac{\omega}{\delta} \|\mathbf{y} - \mathbf{x}\|
 $$
- 
+
 Therefore, the convex function $ f $ is $L$- Lipschitz continuous on the compact set $ K $, where $L=\frac{\omega}{\delta}$.
- 
-\section{}
- 
+	
+\end{solution}
+
+
+\begin{problem}
+	
+\noindent Suppose that $ f:\mathbb{R}^n \to \mathbb{R} $ is a differentiable convex function, $ \nabla f $ is $ L $-Lipschitz continuous, and $ x^* $ is a minimizer of $ f $. Prove that $ \|x - t\nabla f(x) - x^*\|_2 \leq \|x - x^*\|_2 $ for all $ t \in [0, 2/L] $.
+
+\end{problem}
+
+\begin{solution}
+	
 We need prove that $ \|\ \mathbf{x} - t\nabla f(\mathbf{x}) - \mathbf{x}^*\|_2 \leq \|\mathbf{x} - \mathbf{x}^*\|_2 $.
- 
+
 That is
 $$
 \|\ \mathbf{x} - t\nabla f(\mathbf{x}) - \mathbf{x}^*\|_2^2 \leq \|\mathbf{x} - \mathbf{x}^*\|_2^2
 $$
- 
+
 Consider that $\|\ \mathbf{x} - t\nabla f(\mathbf{x}) - \mathbf{x}^*\|_2^2$
 $$
 \|\ \mathbf{x} - t\nabla f(\mathbf{x}) - \mathbf{x}^*\|_2^2 = \| \mathbf{x} - \mathbf{x}^*\|_2^2 + t^2 \|\ \nabla f(\mathbf{x}) \|_2^2 -2t \langle\nabla f(\mathbf{x}), \mathbf{x} - \mathbf{x}^* \rangle
@@ -275,7 +364,7 @@ $$
 
 That is prove
 $$
- t^2 \|\ \nabla f(\mathbf{x}) \|_2^2 \leq 2t \langle\nabla f(\mathbf{x}), \mathbf{x} - \mathbf{x}^* \rangle
+t^2 \|\ \nabla f(\mathbf{x}) \|_2^2 \leq 2t \langle\nabla f(\mathbf{x}), \mathbf{x} - \mathbf{x}^* \rangle
 $$
 
 Becasue of $ t>0 $, collating the above inequation, that is
@@ -299,9 +388,18 @@ $$
 $$
 
 We can easily know that, $ \|\ \mathbf{x} - t\nabla f(\mathbf{x}) - \mathbf{x}^*\|_2 \leq \|\mathbf{x} - \mathbf{x}^*\|_2 $. where $t \in (0,\frac{2}{L}) $. If and only if $ \mathbf{x}= \mathbf{x}^*$ the inequation takes an equal sign, otherwise the inequation strictly holds.
+	
+\end{solution}
 
-\section{}
-
+ 
+\begin{problem}
+ 	
+\noindent Find a convex function that is differentiable on an open convex set but not continuously differentiable on the same set — or prove that such a function does not exist.
+ 	
+\end{problem}
+ 
+\begin{solution}
+ 
 I don't think such a function exists.
 
 Assume that there exists a convex function $ f $ that is differentiable but not continuously differentiable on an open convex set $ U \subseteq \mathbb{R}^n $. Then there exists a point $ \mathbf{x} \in U $ and a sequence $ \{\mathbf{x}_k\} \subseteq U $ converging to $ \mathbf{x} $ (i.e., $ \mathbf{x}_k \to \mathbf{x} $), but the sequence of gradients $ \{\nabla f(\mathbf{x}_k)\} $ does not converge to $ \nabla f(\mathbf{x}) $. That is:
@@ -333,26 +431,98 @@ f(\mathbf{y}) \geq \lim_{k \to \infty} \left[ f(\mathbf{x}_k) + \langle \nabla f
 $$
 
 This shows that $ \mathbf{g} $ is a subgradient of $ f $ at $ \mathbf{x} $, i.e., $ \mathbf{g} \in \partial f(\mathbf{x}) $. But  $ \partial f(\mathbf{x}) = \{\nabla f(\mathbf{x})\} $. Therefore, we must have $ \mathbf{g} = \nabla f(\mathbf{x}) $, which contradicts the assumption $ \mathbf{g} \neq \nabla f(\mathbf{x}) $.
+ 
+\end{solution}
 
-\section{}
 
-At $ x^*=0 $, $f$ does not necessarily have a local minimum.
+\begin{problem}
+	
+\noindent Let $ f:\mathbb{R}^n \to \mathbb{R} $ be a twice continuously differentiable function. Given any $ d \in \mathbb{R}^n $ with $ \|d\|_2 = 1 $, the function $ t \mapsto f(td) $ has a local minimum at $ t^* = 0 $. Is it guaranteed that $ f $ has a local minimum at $ x^* = 0 $?
+	
+\end{problem}
 
-Let $ g(t) = f(t\mathbf{d}) $, $ g'(t) = \langle\nabla f(t\mathbf{d}), \mathbf{d} \rangle$, $g''(t)= \langle\nabla^2  f(t\mathbf{d}), \|\mathbf{d} \|_2^2 \rangle \ $. Since $ t \mapsto f(t\mathbf{d}) $ has a local minimum at $ t^* = 0 $, we can know that
+\begin{solution}
+	
+Let $g_d(t) = f(t\mathbf{d})$, $g_d'(t) = \langle \nabla f(t\mathbf{d}), \mathbf{d} \rangle$, $g_d''(t) = \langle \nabla^2 f(t\mathbf{d})\mathbf{d}, \mathbf{d} \rangle = \|\nabla^2 f(t\mathbf{d})\mathbf{d}\|_2^2$. Since $t \mapsto f(t\mathbf{d})$ has a local minimum at $t^* = 0$, we can know that
 $$
-g'(0)= \langle\nabla f(\mathbf{0}), \mathbf{d} \rangle\ =0
+g_d'(0) = \langle \nabla f(0), \mathbf{d} \rangle = 0
 $$
 $$
-g''(0)= \nabla^2  f(\mathbf{0}) \geq 0
+g_d''(0) = \nabla^2 f(0) \succeq 0
 $$
 
-Therefore,$ \nabla f(\mathbf{0})=0$, $\nabla^2  f(\mathbf{0}) \geq 0$. this implies that $ \nabla^2 f(\mathbf{0}) $ is positive semi - definite. This means that $ f $ has a local minimum or a saddle point at $ \mathbf{x}^* = 0 $.
+Suppose $ f $ does not have a local minimum at $ \mathbf{0} $. Then there exists a sequence $ \{\mathbf{x}_k\} \subset \mathbb{R}^n $ such that:  
+$$
+\mathbf{x}_k \to \mathbf{0}, \quad f(\mathbf{x}_k) < f(\mathbf{0}), \quad \forall k \in \mathbb{N}
+$$  
 
-\section{}
+and define the unit vector:  
+$$
+\mathbf{d}_k = \frac{\mathbf{x}_k}{\|\mathbf{x}_k\|_2}
+$$  
 
-\( x^* \) is not necessarily a global minimizer. The following is a counterexample.
+The unit sphere $ S^{n - 1} = \{\mathbf{d} \in \mathbb{R}^n : \|\mathbf{d}\|_2 = 1\} $ is compact, so $ \{\mathbf{d}_k\} $ has a convergent subsequence. Without loss of generality, let $ \mathbf{d}_k \to \mathbf{d}_* $, and $ \|\mathbf{x}_k\|_2 \to 0 $.  
+$$
+g_{\mathbf{d}_*}(t) = f(t\mathbf{d}_*)
+$$  
 
-Consider the function \( f: \mathbb{R}^2 \to \mathbb{R} \)
+By the condition, $ g_{\mathbf{d}_*} $ has a local minimum at $ t = 0 $, so there exists $ \delta > 0 $ such that:  
+$$g_{\mathbf{d}_*}(t) \geq g_{\mathbf{d}_*}(0) = f(\mathbf{0}) \quad \forall t \in (-\delta, \delta)
+$$  
+
+$ \forall \epsilon>0 $ , since $ \|\mathbf{x}_k\|_2 \to 0 $ and $ \mathbf{d}_k \to \mathbf{d}_* $, for sufficiently large $ k $, $ \|\mathbf{x}_k\|_2 < \delta $ and $ \|\mathbf{d}_k - \mathbf{d}_*\|_2 < \epsilon $. 
+
+Because $ f $ is continuous and  continuous on compact sets. Consider the points $ \|\mathbf{x}_k\|_2 \mathbf{d}_k $ and $ \|\mathbf{x}_k\|_2 \mathbf{d}_* $:  
+$$
+\|\|\mathbf{x}_k\|_2 \mathbf{d}_k - \|\mathbf{x}_k\|_2 \mathbf{d}_*\|_2 = \|\mathbf{x}_k\|_2 \|\mathbf{d}_k - \mathbf{d}_*\|_2 \to 0 \quad (k \to \infty)
+$$  
+
+By continuity:  
+$$
+\lim_{k \to \infty} |f(\|\mathbf{x}_k\|_2 \mathbf{d}_k) - f(\|\mathbf{x}_k\|_2 \mathbf{d}_*)| = 0
+$$  
+
+But by definition:  
+$$
+f(\|\mathbf{x}_k\|_2 \mathbf{d}_k) = f(\mathbf{x}_k) < f(\mathbf{0})
+$$  
+
+and since $ \|\mathbf{x}_k\|_2 < \delta $, we have:  
+$$
+f(\|\mathbf{x}_k\|_2 \mathbf{d}_*) = g_{\mathbf{d}_*}(\|\mathbf{x}_k\|_2) \geq f(\mathbf{0})
+$$  
+
+Thus:  
+$$
+f(\|\mathbf{x}_k\|_2 \mathbf{d}_*) - f(\|\mathbf{x}_k\|_2 \mathbf{d}_k) \geq f(\mathbf{0}) - f(\mathbf{x}_k) > 0
+$$  
+
+Take the limit as $ k \to \infty $:  
+$$
+\lim_{k \to \infty} [f(\|\mathbf{x}_k\|_2 \mathbf{d}_*) - f(r_k \mathbf{d}_k)] \geq \lim_{k \to \infty} [f(\mathbf{0}) - f(\mathbf{x}_k)] > 0
+$$  
+
+we can get: 
+$$
+0 \geq \lim_{k \to \infty} [f(\mathbf{0}) - f(\mathbf{x}_k)] > 0
+$$  
+
+The contradiction shows that the assumption is wrong, so $ f $ has a local minimum at $ \mathbf{x^*} $
+	
+\end{solution}
+
+
+\begin{problem}
+	
+\noindent Let $ f:\mathbb{R}^n \to \mathbb{R} $ be a twice continuously differentiable function. Suppose that there exists a unique point $ x^* \in \mathbb{R}^n $ such that $ \nabla f(x^*) = 0 $. In addition, $ x^* $ is a local minimizer of $ f $. Is it guaranteed that $ x^* $ is a global minimizer of $ f $?
+	
+\end{problem}
+
+\begin{solution}
+	
+$ x^* $ is not necessarily a global minimizer. The following is a counterexample.
+
+Consider the function $ f: \mathbb{R}^2 \to \mathbb{R} $
 $$f(x, y) = x^2 + y^2(1 - x)^3$$
 
 This function is twice continuously differentiable.
@@ -365,14 +535,14 @@ where
 $$\frac{\partial f}{\partial x} = 2x - 3y^2(1 - x)^2, \quad \frac{\partial f}{\partial y} = 2y(1 - x)^3
 $$
 
-\( \frac{\partial f}{\partial y} = 0 \) gives \( 2y(1 - x)^3 = 0 \), so \( y = 0 \) or \( x = 1 \).\\
-If \( x = 1 \), then \( \frac{\partial f}{\partial x} = 2(1) - 3y^2(1 - 1)^2 = 2 \neq 0 \). Thus, \( x = 1 \) does not satisfy the condition that the gradient is zero.\\
-If \( y = 0 \), then \( \frac{\partial f}{\partial x} = 2x - 0 = 2x \). Setting this equal to zero gives \( x = 0 \).
+$ \frac{\partial f}{\partial y} = 0 $ gives $ 2y(1 - x)^3 = 0 $, so $ y = 0 $ or $ x = 1 $.\\
+If $ x = 1 $, then $ \frac{\partial f}{\partial x} = 2(1) - 3y^2(1 - 1)^2 = 2 \neq 0 $. Thus, $ x = 1 $ does not satisfy the condition that the gradient is zero.\\
+If $ y = 0 $, then $ \frac{\partial f}{\partial x} = 2x - 0 = 2x $. Setting this equal to zero gives $ x = 0 $.
 
-Therefore, the unique critical point is \( (x, y) = (0, 0) \).
+Therefore, the unique critical point is $ (x, y) = (0, 0) $.
 
 
-At \( (0, 0) \), \( f(0, 0) = 0 \).
+At $ (0, 0) $, $ f(0, 0) = 0 $.
 
 The Hessian matrix is:
 $$
@@ -386,7 +556,7 @@ $$
 \frac{\partial^2 f}{\partial x^2} = 2 + 6y^2(1 - x), \quad \frac{\partial^2 f}{\partial y^2} = 2(1 - x)^3, \quad \frac{\partial^2 f}{\partial x \partial y} = -6y(1 - x)^2
 $$
 
-At \( (0, 0) \):
+At $ (0, 0) $:
 $$
 H_f(0, 0) = \begin{pmatrix}
 	2 & 0 \\
@@ -394,18 +564,34 @@ H_f(0, 0) = \begin{pmatrix}
 \end{pmatrix}
 $$
 
-The eigenvalues are \( 2 > 0 \), so the matrix is positive definite. Therefore, \( (0, 0) \) is a local minimizer.
+The eigenvalues are $ 2 > 0 $, so the matrix is positive definite. Therefore, $ (0, 0) $ is a local minimizer.
 
-Take the point \( (2, 3) \):
+Take the point $ (2, 3) $:
 $$
 f(2, 3) = 2^2 + 3^2(1 - 2)^3 = 4 + 9 \cdot (-1) = 4 - 9 = -5 < 0 = f(0, 0)
 $$
 
-Thus, \( f(2, 3) < f(0, 0) \), so \( (0, 0) \) is not a global minimizer.
+Thus, $ f(2, 3) < f(0, 0) $, so $ (0, 0) $ is not a global minimizer.
 
-\( x^* \) is not necessarily a global minimizer.
+$ x^* $ is not necessarily a global minimizer.
+	
+\end{solution}
+	
 
-\section{}
+\begin{problem}
+
+\noindent Let $ \{X_k\} $ be a sequence of independent random variables such that
+(a) for each $ k \geq 1 $, $ X_k $ is either 0 or 1;
+(b) there exists a constant $ p \in (0, 1) $ such that $ \mathbb{P}(X_k = 1) \geq p $ for each $ k \geq 1 $.
+
+\noindent For all $ t \in [0, p] $, prove that
+$$ \mathbb{P}\left( \sum_{k = 1}^n X_k \leq tn \right) \leq \exp\left[ -\frac{(p - t)^2}{2p}n \right] $$
+
+\noindent Provide an interpretation for this bound.
+
+\end{problem}
+
+\begin{solution}
 
 Since $ \mathbb{P}(X_k = 1)\geq p $ and the goal is to find an upper bound for $ \mathbb{P}(S_n\leq tn) $ (where $ t\leq p $), consider the case when $ \mathbb{P}(X_k = 1)=p $ for all $ k $. In this case, the probability $ \mathbb{P}(S_n\leq tn) $ reaches the maximum. Therefore, to find the upper bound, we can assume that each $ X_k $ is an independent Bernoulli random variable with parameter $ p $, that is, $ S_n\sim \text{Binomial}(n,p) $.
 
@@ -451,16 +637,30 @@ $$
 
 This is the same as in the case of independent and identically distributed Bernoulli($ p $) random variables. By choosing $ \lambda $, we can obtain the same upper bound.
 
-\section{}
-\textcolor{red}{$A \in \mathbb{R}^{n}$ should be $A \in \mathbb{R}^{n\times n}$ in the question}
+\end{solution}
+ 
+
+\begin{problem}
+
+\noindent Recall that a consistent matrix norm on $ \mathbb{R}^{n \times n} $ is a function $ \psi:\mathbb{R}^{n \times n} \to \mathbb{R} $ that satisfies the following conditions.
+(a) Absolute homogeneity: $ \psi(\alpha A) = |\alpha|\psi(A) $ for all $ A \in \mathbb{R}^{n \times n} $ and $ \alpha \in \mathbb{R} $.
+(b) Triangle inequality: $ \psi(A + B) \leq \psi(A) + \psi(B) $ for all $ A, B \in \mathbb{R}^{n \times n} $.
+(c) Positive definiteness: $ \psi(A) \geq 0 $ for all $ A \in \mathbb{R}^{n \times n} $, and $ \psi(A) = 0 $ if and only if $ A = 0 $.
+(d) Consistency: $ \psi(AB) \leq \psi(A)\psi(B) $ for all $ A, B \in \mathbb{R}^{n \times n} $.
+
+\end{problem}
+
+\begin{solution}
 
 $\rho$ is not a consistent matrix norm on $\mathbb{R}^{n\times n}$, $\rho$ satisfies (a), and violates (b), (c), (d).
 
-\subsection*{(a)}
+\textbf{(a)}
 
- If $ \lambda $ is an eigenvalue of $ A $, then $ \alpha\lambda $ is an eigenvalue of $ \alpha A $. Thus, $ \rho(\alpha A)=\max|\alpha\lambda| = |\alpha|\max|\lambda|=|\alpha|\rho(A) $.
+If $ \lambda $ is an eigenvalue of $ A $, then $ \alpha\lambda $ is an eigenvalue of $ \alpha A $. Thus, $ \rho(\alpha A)=\max|\alpha\lambda| = |\alpha|\max|\lambda|=|\alpha|\rho(A) $.
 
-\subsection*{(b)}
+\vspace{12pt}
+
+\textbf{(b)}
 
 Let
 $$
@@ -476,7 +676,9 @@ The eigenvalues are $ 1, - 1 $, so $ \rho(A + B)=1 $.
 
 So $ 1=\rho(A + B)>\rho(A)+\rho(B)= 0 $.
 
-\subsection*{(c)}
+\vspace{12pt}
+
+\textbf{(c)}
 
 Let
 $$
@@ -485,7 +687,9 @@ $$
 
 The eigenvalues are $ 0,0 $, so $ \rho(A)=0 $, but $ A\neq0 $.
 
-\subsection*{(d)}
+\vspace{12pt}
+
+\textbf{(d)}
 
 Let
 $$
@@ -501,9 +705,31 @@ The eigenvalues are $ 1,0 $, so $ \rho(AB)=1 $.
 
 We have $ \rho(A)=0 $, $ \rho(B)=0 $, so $ \rho(A)\rho(B)=0 $, but $ 1=\rho(AB)>\rho(A)\rho(B)=0 $.
 
-\section{}
+\end{solution}
 
-\subsection*{(a)}
+\begin{problem}
+
+\noindent For any $ x \in \mathbb{R}^n $, define
+$$ \|x\|_p = \left( \sum_{i = 1}^n |x_i|^p \right)^{1/p}, \quad p \in (0, \infty) $$
+
+\noindent (a) Given $ p \in (0, 1] $, prove that $ \|x + y\|_p^p \leq \|x\|_p^p + \|y\|_p^p $ for all $ x, y \in \mathbb{R}^n $.
+\noindent (b) Given $ p \in (0, 1] $, prove that $ \|x + y\|_p \leq 2^{\frac{1}{p} - 1}(\|x\|_p + \|y\|_p) $ for all $ x, y \in \mathbb{R}^n $.
+\noindent (c) Given $ p \in (0, 1] $, prove that $ \|x + y\|_p \geq \|x\|_p + \|y\|_p $ for all $ x, y \in \mathbb{R}^n $ whose entries are all nonnegative.
+
+\noindent (d) Given $ x \in \mathbb{R}^n $, prove that $ \|x\|_p $ is a decreasing function of $ p \in (0, \infty) $.
+
+\noindent (e) Given $ x \in \mathbb{R}^n \setminus \{0\} $, prove that $ \log\|x\|_p $ is a convex function of $ p \in (0, \infty) $.
+
+\noindent (f) Recall that, for a matrix $ A \in \mathbb{R}^{n \times n} $, $ \|A\|_p $ is defined by
+$$
+\|A\|_p = \max_{\|x\|_p = 1} \|Ax\|_p
+$$
+As a function of $ p \in (0, +\infty) $, is $ \|A\|_p $ increasing, decreasing, or neither?
+\end{problem}
+
+\begin{solution}
+
+\textbf{(a)}
 $$
 \| \mathbf{x}+\mathbf{y}\|_p^p \leq \| \mathbf{x}\|_p^p +\| \mathbf{y}\|_p^p \Leftrightarrow \sum_{i=1}^{n} (x_i+y_i)^p \leq \sum_{i=1}^{n} x_i^p+\sum_{i=1}^{n}y_i^p
 $$
@@ -512,7 +738,9 @@ we only need to prove that, for every $x_i, y_i > 0$, $(x_i+y_i)^p \leq  x_i^p+y
 
 Consider $f(t)=t^p ( t \geq 0,p\in (0,1])$, $f''(t)=p(p-1)t^(p-2)$, easy to know $f''(t) \geq 0$, so $f(t)$ is a concave function. Therefore, we can know $x_i, y_i > 0$, $(x_i+y_i)^p \leq  x_i^p+y_i^p$
 
-\subsection*{(b)}   
+\vspace{12pt}
+
+\textbf{(b)}   
 
 From the (a), we have $\| \mathbf{x}+\mathbf{y}\|_p^p \leq \| \mathbf{x}\|_p^p +\| \mathbf{y}\|_p^p$, so
 \begin{align*}
@@ -524,16 +752,21 @@ From the (a), we have $\| \mathbf{x}+\mathbf{y}\|_p^p \leq \| \mathbf{x}\|_p^p +
 
 Let $g(t)=t^p+(1-t)^p$, where $0<p<1, t\in(0,1)$
 
-$g'(t)=pt^{p-1}+(1-t)^{p-1} $ When t=0.5, $g'(t)=0$, easy to know $g_{max}=g(0.5)=2^{1-p}$
+$g'(t)=pt^{p-1}+(1-t)^{p-1} $. When t=0.5, $ g'(t)=0 $,  $g_{max}=g(0.5)=2^{1-p}$
 
-$\frac{\mathbf{x}_p}{\| \mathbf{x}\|_p +\| \mathbf{y}\|_p} \in (0,1)$, so $[(\frac{\mathbf{x}_p}{\| \mathbf{x}\|_p +\| \mathbf{y}\|_p})^p+(1-\frac{\mathbf{x}_p}{\| \mathbf{x}\|_p +\| \mathbf{y}\|_p})^p]_{max}=2^{1-p}$
+$$\frac{\mathbf{x}_p}{\| \mathbf{x}\|_p +\| \mathbf{y}\|_p} \in (0,1)$$
+
+So 
+$$[(\frac{\mathbf{x}_p}{\| \mathbf{x}\|_p +\| \mathbf{y}\|_p})^p+(1-\frac{\mathbf{x}_p}{\| \mathbf{x}\|_p +\| \mathbf{y}\|_p})^p]_{max}=2^{1-p}$$
 
 From the above inequality, we can have:
 $$
 \| \mathbf{x}+\mathbf{y}\|_p \leq (2^{p-1})^\frac{1}{p}(\| \mathbf{x}\|_p +\| \mathbf{y}\|_p) =2^{\frac{1}{p}-1}(\| \mathbf{x}\|_p +\| \mathbf{y}\|_p)
 $$
 
-\subsection*{(c)} 
+\vspace{12pt}
+
+\textbf{(c)}
 
 $$
 \| \mathbf{x}+\mathbf{y}\|_p \geq \| \mathbf{x}\|_p +\| \mathbf{y}\|_p \Leftrightarrow \frac{\| \mathbf{x}+\mathbf{y}\|_p}{\|\mathbf{x}\|_p +\| \mathbf{y}\|_p} \geq 1
@@ -549,7 +782,9 @@ $$
 [\frac{\sum (x_i+y_i)^p}{(\| \mathbf{x}\|_p +\| \mathbf{y}\|_p)^p}]^{\frac{1}{p}} \geq [\frac{\sum (x_i^p+y_i^p)}{(\| \mathbf{x}\|_p +\| \mathbf{y}\|_p)^p}]^{\frac{1}{p}} = \frac{(\| \mathbf{x}\|_p^p +\| \mathbf{y}\|_p^p)^{\frac{1}{p}}}{(\| \mathbf{x}\|_p +\| \mathbf{y}\|_p)} \geq 1
 $$
 
-\subsection*{(d)} 
+\vspace{12pt}
+
+\textbf{(d)}
 We need to prove that for $ q > p > 0 $, $ \|\mathbf{x}\|_q \leq \|\mathbf{x}\|_p $. If $ \mathbf{x} = \mathbf{0} $, then all norms are 0, and the statement holds. Let $ \mathbf{x} \neq \mathbf{0} $. Set $ \|\mathbf{x}\|_p = 1 $, then $ \sum |x_i|^p = 1 $. We need to prove $ \|\mathbf{x}\|_q \leq 1 $, that is: $\left( \sum |x_i|^q \right)^{1/q} \leq 1$
 
 Let $ y_i = |x_i|^p \geq 0 $, then $ \sum y_i = 1 $, and:
@@ -572,7 +807,10 @@ $$
 
 That is, $ \|\mathbf{x}\|_q \leq 1 = \|\mathbf{x}\|_p $. Equality holds when $ \mathbf{x} $ has only one non - zero component.
 
-\subsection*{(e)} 
+\vspace{12pt}
+
+\textbf{(e)} 
+
 \textcolor{red}{Failed to prove it}
 
 $$
@@ -592,7 +830,9 @@ $$
 
 Since $p>0$, that is $p^3>0$, we only need to prove $p^2 h''(p)-2ph'(p)+2h(p) \geq 0$
 
-\subsection*{(f)} 
+\vspace{12pt}
+
+\textbf{(f)}
 $\|A\|_p$ is neither monotonically increasing nor monotonically decreasing for $p>0$.
 
 Consider the matrix $ A=\begin{pmatrix}1&1\\0&0\end{pmatrix} $.
@@ -621,7 +861,7 @@ $$
 $$
 
 We can know that $|x_1 + x_2|$ achieve the maximum value, when $x_1=x_2$, that is,
- $ |x_1 + x_2|\leq\sqrt{2}\|\mathbf{x}\|_2=\sqrt{2} $. Therefore, $ \|A\|_2=\sqrt{2}$.
+$ |x_1 + x_2|\leq\sqrt{2}\|\mathbf{x}\|_2=\sqrt{2} $. Therefore, $ \|A\|_2=\sqrt{2}$.
 
 $ \|A\|_{1}=1<\sqrt{2}=\|A\|_2 $, that is, when $ p $ increases from 1 to 2, $ \|A\|_p $ increases.
 
@@ -645,12 +885,41 @@ $ \|A\|_{0.5}=4>2=\|A\|_1$. That is, when $ p $ increases from 0.5 to 1, $ \|A\|
 
 $\|A\|_p$ is neither monotonically increasing nor monotonically decreasing.
 
-\section{\textcolor{red}{Failed to prove it}}
+\end{solution}
 
+\begin{problem}
 
-\section{}
-\subsection*{(a)} 
-\subsubsection*{(1)} 
+\noindent For any matrix $ A \in \mathbb{R}^{n \times n} $ and any vector $ x \in \mathbb{R}^n $, prove that $ \max_{\|d\| \leq 1} \|A(x + d)\| \geq \|A\| $.Here, $ \|\cdot\| $ denotes a vector norm on $ \mathbb{R}^n $ and the operator norm on $ \mathbb{R}^{n \times n} $ induced by this vector norm.
+
+\end{problem}
+
+\begin{solution}
+
+\textcolor{red}{Failed to prove it}
+
+\end{solution}
+
+\begin{problem}
+
+\noindent Consider matrices $ A \in \mathbb{C}^{m \times n} $ and $ B \in \mathbb{C}^{n \times m} $.
+
+\noindent (a) Show that $ AB $ and $ BA $ share the same set of nonzero eigenvalues.
+
+\noindent Optional Requirements:
+\begin{itemize}
+	\item Give a proof without using determinants or matrix decomposition.
+	\item Give a proof from a geometric point of view.
+	\item Give a proof from an algebraic point of view.
+\end{itemize}
+\noindent (b) If $ \lambda $ is a nonzero eigenvalue of $ AB $ and $ BA $, show that the geometric multiplicity of $ \lambda $ is the same with respect to $ AB $ and $ BA $.
+
+\noindent (c) Prove the same conclusion as above for the algebraic multiplicity.
+
+\end{problem}
+
+\begin{solution}
+\textbf{(a1)}
+ 
 The eigenvalues of $AB$ are all eigenvalues of $BA$:
 
 $\lambda \neq 0 $ is an eigenvalue of $AB$ and the corresponding eigenvector is $\mathbf{x}\in \mathbb{C}^m$, that is $AB\mathbf{x}=\lambda\mathbf{x}$, so
@@ -670,7 +939,9 @@ AB\mathbf{y}=A(\lambda\mathbf{y})\implies AB(A\mathbf{y})=\lambda(A\mathbf{y})$$
 
 Similarly, if $ A\mathbf{y}=\mathbf{0} $, then $ BA\mathbf{y}=\lambda\mathbf{y}=\mathbf{0} $, which leads to $ \mathbf{y}=\mathbf{0} $, a contradiction. Therefore, $ A\mathbf{y}\neq\mathbf{0} $, that is, $ \lambda $ is a non-zero eigenvalue of $ AB $.
 
-\subsubsection*{(2)} 
+\vspace{12pt}
+
+\textbf{(a2)}
 
 Consider linear mappings: Let $ A:\mathbb{C}^n\to\mathbb{C}^m $ and $ B:\mathbb{C}^m\to\mathbb{C}^n $ be linear mappings. Then $ AB:\mathbb{C}^m\to\mathbb{C}^m $ and $ BA:\mathbb{C}^n\to\mathbb{C}^n $.
 
@@ -692,11 +963,15 @@ $$
 
 This shows that $ \mathbf{w} $ is an eigenvector of $ AB $ corresponding to the eigenvalue $ \lambda $.
 
-\subsubsection*{(3)} 
+\vspace{12pt}
 
-See (1) for details.
+\textbf{(a3)}
 
-\subsection*{(b)} 
+See (a1) for details.
+
+\vspace{12pt}
+
+\textbf{(b)}
 
 Let $ \lambda\neq 0 $ be a common eigenvalue of $ AB $ and $ BA $. Define the eigenspaces:
 
@@ -742,7 +1017,9 @@ $$
 
 Therefore, the geometric multiplicities of $ \lambda $ in $ AB $ and $ BA $ are the same.
 
-\subsection*{(c)} 
+\vspace{12pt}
+
+\textbf{(c)}
 
 Denote the characteristic polynomial of $ AB $ as $ f_{AB}(\lambda)=\vert (\lambda I_m - AB)\vert $, and the characteristic polynomial of $ BA $ as $ f_{BA}(\lambda)=\vert(\lambda I_n - BA) \vert $.
 
@@ -756,9 +1033,10 @@ $$
 \lambda^m f_{BA}(\lambda) = \lambda^m \vert(\lambda I_n - BA)\vert
 $$
 
+There exists an invertible matrix $P$ such that $AB = P^{-1}BAP$.
 \begin{align*}
-	\lambda^n \vert \lambda I_m - AB \vert &= \lambda^n \left\vert \lambda \left( I_m - \frac{1}{\lambda}AB \right) \right\vert = \lambda^n \lambda^m \left\vert I_m - \left( \frac{1}{\lambda}A \right)B \right\vert \\
-	&= \lambda^n \lambda^m \left\vert I_n - B \left( \frac{1}{\lambda}A \right) \right\vert = \lambda^m \vert \lambda I_n - BA \vert.
+	\lambda^n \vert \lambda I_m - AB \vert &= \lambda^n \lambda^m \left\vert  \left( I_m - \frac{1}{\lambda}AB \right) \right\vert = \lambda^n \lambda^m \left\vert P^{-1}(I_n -  \frac{1}{\lambda}BA)P \right\vert \\
+	&= \lambda^n \lambda^m \left\vert I_n - \frac{1}{\lambda}BA  \right\vert = \lambda^m \vert \lambda I_n - BA \vert.
 \end{align*}
 
 there is an identity:
@@ -772,11 +1050,30 @@ Similarly, in the polynomial $ \lambda^m f_{BA}(\lambda) $, the multiplicity of 
 
 Since the above identity shows that $ \lambda^n f_{AB}(\lambda) $ and $ \lambda^m f_{BA}(\lambda) $ are the same polynomial, their roots and their multiplicities are completely the same. Therefore, for any non-zero eigenvalue $ \lambda_0 \neq 0 $, its algebraic multiplicities in $ AB $ and $ BA $ are the same.
 
-\section{}
+\end{solution}
 
-\subsection*{(a)} 
 
-\subsubsection*{(1)} 
+
+\begin{problem}
+
+\noindent Consider a polynomial $ p \in \mathbb{C}[x] $ and a matrix $ A \in \mathbb{C}^{n \times n} $.
+
+\noindent (a) For any $ \lambda \in \mathbb{C} $, show that $ \lambda $ is an eigenvalue of $ A $ if and only if $ p(\lambda) $ is an eigenvalue of $ p(A) $.
+
+\noindent Optional Requirements:
+\begin{itemize}
+	\item Give a proof without using determinants or matrix decomposition.
+	\item Give a proof from a geometric point of view.
+	\item Give a proof from an algebraic point of view.
+\end{itemize}
+
+\noindent (b) Suppose that the eigenvalues of $ A $ are $ \lambda_1, \lambda_2, \ldots, \lambda_n $, multiple eigenvalues counted with multiplicity. Show that the eigenvalues of $ p(A) $ are $ p(\lambda_1), p(\lambda_2), \ldots, p(\lambda_n) $, multiple eigenvalues counted with multiplicity.
+
+\end{problem}
+
+\begin{solution}
+
+\textbf{(a1)}
 
 $\Rightarrow$
 
@@ -828,41 +1125,69 @@ $$
 
 If $ r(A)\mathbf{v}\neq0 $, then $ A-\lambda I $ must have a non-zero vector $ r(A)\mathbf{v} $ that makes it zero, which means $ \lambda $ is an eigenvalue of $ A $. If $ r(A)\mathbf{v}=0 $, we can continue to apply this process recursively, eventually, we will get that $ \lambda $ is an eigenvalue of $ A $.
 
-\subsubsection*{(2)} 
+\vspace{12pt}
 
-$\Rightarrow$
+\textbf{(a2)}
 
-If $ \lambda $ is an eigenvalue of $ A $, then there $\exists$ a one - dimensional subspace $ V=\text{span}(\mathbf{v}) $ such that the action of $ A $ on $ V $ is a scaling, i.e., $ A\mathbf{v}=\lambda\mathbf{v} $ (From the a(1)). For the polynomial $ p(A) $, its action on $ V $ is $ p(A)\mathbf{v}=p(\lambda)\mathbf{v} $. Therefore, $ p(\lambda) $ is an eigenvalue of $ p(A) $.
+\textcolor{red}{Failed to prove it}
 
-$\Leftarrow$
-
-If $ p(\lambda) $ is an eigenvalue of $ p(A) $, then there exists a one - dimensional subspace $ V = \text{span}(\mathbf{v}) $ such that the action of $ p(A) $ on $ V $ is a scaling, i.e., $ p(A)\mathbf{v}=p(\lambda)\mathbf{v} $. From the a(1), we will get that $ \lambda $ is an eigenvalue of $ A $.
-
-\subsubsection*{(3)} 
+\vspace{12pt}
+	
+\textbf{(a3)}
 
 See (1) for details.
 
-\subsection*{(b)} 
+\vspace{12pt}
+	
+\textbf{(b)}
 
 In a(1) we have already proven that if $ \lambda $ is an eigenvalue of $ A $, $ p(\lambda) $ is an eigenvalue of $ p(A) $. Therefore, we will only consider multiplicities in this question.
 
-If $ \lambda_i $ is an eigenvalue of $ A $ with multiplicity $ k $, then there exist $ k $ linearly independent eigenvectors $ \mathbf{v}_{i1}, \mathbf{v}_{i2}, \ldots, \mathbf{v}_{ik} $ such that:
+Let $ \lambda_i $ be an eigenvalue of $ A $, and its algebraic multiplicity is $ k $. The eigenspace $ V_{\lambda_i}=\left\{v\in\mathbb{C}^n\mid (A - \lambda_i I)^m v = 0\ \text{for some }m\right\} $ satisfies $ \dim V_{\lambda_i}=k $. On $ V_{\lambda_i} $, $ A $ can be expressed as $ \lambda_i I + N_i $, where $ N_i $ is a nilpotent operator. Then:
 $$
-A\mathbf{v}_{ij} = \lambda_i\mathbf{v}_{ij} \quad \text{for } j = 1, 2, \ldots, k
-$$
-
-Through the above process, we can obtain:
-$$
-p(A)\mathbf{v}_{ij} = p(\lambda_i)\mathbf{v}_{ij} \quad \text{for } j = 1, 2, \ldots, k
+\left.p(A)\right|_{V_{\lambda_i}}=p(\lambda_i I + N_i) 
 $$
 
-This shows that $ p(\lambda_i) $ is an eigenvalue of $ p(A) $ with multiplicity at least $ k $.
+Expand $ p $ as a Taylor series at $ \lambda_i $:
 
-Therefore, if $ \lambda_1, \lambda_2, \ldots, \lambda_n $ are the eigenvalues of $ A $ (with repeated roots counted by their multiplicities), then $ p(\lambda_1), p(\lambda_2), \ldots, p(\lambda_n) $ are the eigenvalues of $ p(A) $ (multiple eigenvalues counted with multiplicity).
+$$ p(\lambda_i I + N_i)=p(\lambda_i)I + p'(\lambda_i)N_i+\frac{p''(\lambda_i)}{2!}N_i^2+\cdots $$
 
-\section{}
+Since $ N_i $ is nilpotent, this series is finite. Choose a basis of $ V_{\lambda_i} $ such that the matrix of $ N_i $ is upper triangular matrix , then the matrix of $ \lambda_i I + N_i $ is upper triangular, with all diagonal elements being $ \lambda_i $. Therefore, the matrix of $ p(\lambda_i I + N_i) $ is also upper triangular, with all diagonal elements being $ p(\lambda_i) $. This shows that all eigenvalues of $ \left.p(A)\right|_{V_{\lambda_i}} $ are $ p(\lambda_i) $, and the algebraic multiplicity is $ \dim V_{\lambda_i}=k $.
 
-\subsection*{(a)} 
+Over the complex number field $ \mathbb{C} $, the space $ \mathbb{C}^n $ can be decomposed into the direct sum of generalized eigenspaces:
+$$
+\mathbb{C}^n=\bigoplus_{\lambda}V_{\lambda} 
+$$
+
+where $ \lambda $ runs over the distinct eigenvalues of $ A $, and $ \dim V_{\lambda} $ is equal to the algebraic multiplicity of $ \lambda $. Therefore, the matrix of $ p(A) $ is a block - diagonal matrix with respect to this decomposition, and each block corresponds to $ \left.p(A)\right|_{V_{\lambda}} $. The eigenvalues (including algebraic multiplicities) of $ p(A) $ are the union of the eigenvalues of all blocks, that is:
+
+For each distinct eigenvalue $ \lambda $ of $ A $, the algebraic multiplicity of the value $ p(\lambda) $ is $ \dim V_{\lambda} $.
+
+Therefore, the eigenvalues of $ p(A) $ are $ p(\lambda_1),p(\lambda_2),\ldots,p(\lambda_n) $ (multiple eigenvalues are counted according to their algebraic multiplicities).
+
+\end{solution}
+
+
+\begin{problem}
+
+\noindent Let $ n > 1 $. Define $ A \in \mathbb{R}^{n \times n} $ to be the matrix with entries
+$$
+A_{ij} = 
+\begin{cases} 
+	1 & \text{if } i = j, \quad i, j = 1, 2, \ldots, n. \\
+	x & \text{if } i \neq j, 
+\end{cases}
+$$
+
+\noindent (a) Find the eigenvalues of $ A $. Specify their multiplicities.
+
+\noindent (b) Prove that $ A $ is positive definite if and only if $ -1/(n - 1) < x < 1 $.
+\end{problem}
+
+\begin{solution}
+
+
+\textbf{(a)} 
 
 Let $ A = (1 - x)I + xJ $, where $ I $ is the identity matrix and $ J $ is the all - one matrix.
 
@@ -876,14 +1201,28 @@ $ (n-1)x+1 $, with corresponding algebraic multiplicity 1;
 
 $ 1 - x $, with corresponding algebraic multiplicity $ n - 1 $.
 
+\vspace{12pt}
 
-\subsection*{(b)} 
+\textbf{(b)} 
 
 The matrix is positive definite $\Leftrightarrow$ all its eigenvalues greater than 0. From (a), we can easy to know $A$ is positive definite $\Leftrightarrow (n-1)x+1 >0 $ and $ 1 - x>0 \Leftrightarrow \frac{1}{1-n}<x<1$.
 
-\section{}
+\end{solution}
 
-\subsection*{(a)} 
+\begin{problem}
+
+\noindent Suppose that $ m \geq n $. Define $ S = \{ X \in \mathbb{C}^{m \times n} : X^H X = I_n \} $. Given $ X \in \mathbb{C}^{m \times n} $, let $ \text{dist}(X, S) $ be the distance from $ X $ to $ S $ in Frobenius norm.
+
+\noindent (a) Prove that $ \text{dist}(X, S) \leq \| I_n - X^H X \|_F $
+
+\noindent (b) Prove that there does not exist a constant $ C $ such that $ \| I_n - X^H X \|_F \leq C \, \text{dist}(X, S) $ for all $ X \in \mathbb{C}^{m \times n} $.
+
+\end{problem}
+
+\begin{solution}
+
+
+\textbf{(a)} 
 
 Consider the singular value decomposition of matrix $ X $: $ X = U\Sigma V^H $, where $ U $ and $ V $ are unitary matrices, and $ \Sigma $ is a diagonal matrix whose diagonal entries are the singular values $ \sigma_1, \sigma_2, \ldots, \sigma_n $. Construct the matrix $ Y $ in set $ S $ as $ Y = U\begin{bmatrix}I_n\\0\end{bmatrix}V^H $, where $ \begin{bmatrix}I_n\\0\end{bmatrix} $ is an $ m\times n $ matrix.
 
@@ -897,20 +1236,46 @@ $$
 
 Therefore, $ \sqrt{\sum_{i = 1}^n(\sigma_i - 1)^2}\leq\sqrt{\sum_{i = 1}^n(1 - \sigma_i^2)^2} $, that is, $ \text{dist}(X, S)\leq\|I_n - X^H X\|_F $.
 
-\subsection*{(b)} 
+\vspace{12pt}
+
+\textbf{(b)} 
 
 Construct a sequence of matrices $ X_k $, where the first singular value is $ k $ and others are 1. At this time, $ \|I_n - X_k^H X_k\|_F = |1 - k^2| $, and $ \text{dist}(X_k, S)=|k - 1| $. When $ k\to\infty $, the ratio $ \frac{|1 - k^2|}{|k - 1|}=k + 1\to\infty $, which shows that there is no such constant $ C $.
 
-\section{}
+\end{solution}
 
-\subsection*{(a)} 
 
-\textcolor{red}{The eigenvalues of $ J $ should be $\pm i\sqrt{\sigma_j}$, otherwise $J=\begin{pmatrix}0&A\\-A^H&0\end{pmatrix}$ should be $\begin{pmatrix}0&A\\A^H&0\end{pmatrix}$. Here we modify the proof to show that the eigenvalues of $J$ are $\pm i\sqrt{\sigma_j}$ to ensure the consistency between parts (a) and (b)}.
-	
+
+
+\begin{problem}
+
+\noindent Let $ A \in \mathbb{C}^{m \times n} $ be a nonsingular matrix, and
+$$
+J = \begin{pmatrix} 0 & A \\ A^H & 0 \end{pmatrix}.
+$$
+
+\noindent (a) If the eigenvalues of $ A^H A $ are $ \sigma_1, \ldots, \sigma_n $, multiplicity included, prove that the eigenvalues of $ J $ are $ \sqrt{\sigma_1}, -\sqrt{\sigma_1}, \ldots, \sqrt{\sigma_n}, -\sqrt{\sigma_n} $, multiplicity included.
+
+\noindent (b) Consider $ n \times n $ complex matrices $ U_1, U_2, V_1, V_2 $, and $ \Sigma $. Suppose that $ \Sigma $ is a diagonal matrix whose diagonal entries are all positive. If
+$$
+J = \begin{pmatrix} U_1 & U_2 \\ V_1 & V_2 \end{pmatrix} \begin{pmatrix} \Sigma & 0 \\ 0 & -\Sigma \end{pmatrix} \begin{pmatrix} U_1 & U_2 \\ V_1 & V_2 \end{pmatrix}^H
+$$
+is an eigenvalue decomposition of $ J $, prove that
+$$
+A = 2 U_1 \Sigma V_1^H = -2 U_2 \Sigma V_2^H.
+$$
+
+
+\end{problem}
+
+\begin{solution}
+
+\textbf{(a)} 
+
 Consider the eigenvalue equation of $ J $: $ J\mathbf{v} = \lambda\mathbf{v} $, where $ \mathbf{v}=\begin{pmatrix}\mathbf{x}\\\mathbf{y}\end{pmatrix} $, $ \mathbf{x}, \mathbf{y}\in\mathbb{C}^n$. Then
 
 $$
-J\mathbf{v}=\begin{pmatrix}0&A\\-A^H&0\end{pmatrix}\begin{pmatrix}\mathbf{x}\\\mathbf{y}\end{pmatrix}=\begin{pmatrix}A\mathbf{y}\\-A^H\mathbf{x}\end{pmatrix}=\lambda\begin{pmatrix}\mathbf{x}\\\mathbf{y}\end{pmatrix}
+J\mathbf{v}=\begin{pmatrix}0&A\\A^H&0\end{pmatrix}\begin{pmatrix}\mathbf{x}\\\mathbf{y}\end{pmatrix}=\begin{pmatrix}A\mathbf{y}\\A^H\mathbf{x}\end{pmatrix}=\lambda\begin{pmatrix}\mathbf{x}\\\mathbf{y}\end{pmatrix}
 $$
 
 That is,
@@ -919,22 +1284,24 @@ $$
 A\mathbf{y}=\lambda\mathbf{x},\quad(1)
 $$
 $$
--A^H\mathbf{x}=\lambda\mathbf{y}.\quad(2)
+A^H\mathbf{x}=\lambda\mathbf{y}.\quad(2)
 $$
 
 If $ \lambda = 0 $, then $ A\mathbf{y}=\mathbf{0} $ and $ A^H\mathbf{x}=\mathbf{0} $. Since $ A $ is non - singular, we get $ \mathbf{y}=\mathbf{0} $ and $ \mathbf{x}=\mathbf{0} $, that is, $ \mathbf{v}=\mathbf{0} $, a contradiction, so $ \lambda\neq 0 $. Solve $ \mathbf{x}=\lambda^{- 1}A\mathbf{y} $ from (1) and substitute into (2):
 
 $$
--A^H(\lambda^{- 1}A\mathbf{y})=\lambda\mathbf{y}\implies -\lambda^{- 1}A^H A\mathbf{y}=\lambda\mathbf{y}\implies A^H A\mathbf{y}=-\lambda^2\mathbf{y}
+A^H(\lambda^{- 1}A\mathbf{y})=\lambda\mathbf{y}\implies \lambda^{- 1}A^H A\mathbf{y}=\lambda\mathbf{y}\implies A^H A\mathbf{y}=\lambda^2\mathbf{y}
 $$
 
-Therefore, $ \lambda^2 $ is an eigenvalue of $ A^H A $, that is, $ \lambda^2=- \sigma_j $. Since $ \sigma_j>0 $, we have
+Therefore, $ \lambda^2 $ is an eigenvalue of $ A^H A $, that is, $ \lambda^2= \sigma_j $. Since $ \sigma_j>0 $, we have
 
 $$
-\lambda=\pm i\sqrt{\sigma_j}
+\lambda=\pm \sqrt{\sigma_j}
 $$
 
-\subsection*{(b)} 
+\vspace{12pt}
+
+\textbf{(b)} 
 
 \textcolor{red}{Failed to prove it}
 
@@ -952,9 +1319,20 @@ $$ U_1\Sigma U_2^H + U_2(-\Sigma V_2^H) = A $$
 $$ V_1\Sigma U_1^H + V_2(-\Sigma V_1^H) = -A^H $$
 $$ V_1\Sigma U_2^H + V_2(-\Sigma V_2^H) = 0 $$
 
-\section{}
+\end{solution}
 
-\subsection*{(a)} 
+
+\begin{problem}
+
+\noindent (a) If $ 2 \leq m \leq n + 1 $, show that there exists $ \{ v_1, v_2, \ldots, v_m \} \subset \mathbb{R}^n $ such that $ v_i^T v_j < 0 $ for all distinct indices $ i, j \in \{ 1, 2, \ldots, m \} $.
+
+\noindent (b) If $ m > n + 1 $, show that there does not exist $ \{ v_1, v_2, \ldots, v_m \} \subset \mathbb{R}^n $ such that $ v_i^T v_j < 0 $ for all distinct indices $ i, j \in \{ 1, 2, \ldots, m \} $.
+
+\end{problem}
+
+\begin{solution}
+
+\textbf{(a)} 
 
 $ \mathbf{e}_i $ is the standard basis vector in $ \mathbb{R}^n $, $ \mathbf{s} = \mathbf{e}_1 + \mathbf{e}_2 + \cdots + \mathbf{e}_n $ is the all - one vector, and $ a $ is a positive number. Let $ \mathbf{v}_i = \mathbf{e}_i - a\mathbf{s} $
 
@@ -973,11 +1351,28 @@ When $ a\in(0, 1/n) $, the inner product $ b(- 1 + an) < 0 $.
 
 In conclusion, When $ a\in(0, 1/n) $, $\mathbf{v}_i^T\mathbf{v}_j <0 \quad i\neq j$
 
-\subsection*{(b)} 
+\vspace{12pt}
+
+\textbf{(b)} 
 
 \textcolor{red}{Failed to prove it}
 
-\section{}
+\end{solution}
+
+\begin{problem}
+
+\noindent Given $ A \in \mathbb{R}^{m \times m} $ and $ B \in \mathbb{R}^{n \times n} $, prove that the equation
+$$
+AX - XB = C, \quad X \in \mathbb{R}^{m \times n}
+$$
+has a unique solution for all $ C \in \mathbb{R}^{m \times n} $ if and only if $ A $ and $ B $ do not share any eigenvalue.
+
+\noindent [When $ n = 1 $, $ B $ is a scalar while $ X $ and $ C $ are $ m $-dimensional vectors; in this case, the conclusion says nothing but $ (A - B I)X = C $ has a unique solution for all $ C \in \mathbb{R}^m $ if and only if $ B $ is not an eigenvalue of $ A $.]
+
+\end{problem}
+
+\begin{solution}
+
 
 Define a linear operator $ T: \mathbb{R}^{m \times n} \to \mathbb{R}^{m \times n} $ as $ T(X) = AX - XB $. Then the original equation is equivalent to $ T(X) = C $. Since $ \mathbb{R}^{m \times n} $ is a finite - dimensional vector space, the following are equivalent for the linear operator $ T $ to have a unique solution for all $ C $: $ T $ is invertible $ \Leftrightarrow $ $ T $ is bijective $ \Leftrightarrow $ $ T $ is injective, that is, the equation $ T(X) = 0 $ has only the zero solution:$AX - XB = 0 \Leftrightarrow AX = XB$ has a unique solution $ X = 0 $.
 
@@ -1000,7 +1395,7 @@ $\Leftarrow$
 \textbf{Lemma}:Suppose $ X $ satisfies $ A X = X B $. $ \forall k \geq 0 $, we have $ A^k X = X B^k $.  
 
 \textbf{Proof}: When $ k = 0 $, $ A^0 X = I X = X $, and $ X B^0 = X B^0 = X I = X $. Thus, $ A^0 X = X B^0 $ holds. 
- 
+
 Suppose for some integer $ k \geq 0 $, $ A^k X = X B^k $ holds.  
 $$
 A^{k + 1} X = A \cdot A^k X = A \cdot (X B^k) = (A X) B^k = (X B) B^k = X B^{k + 1}
@@ -1026,7 +1421,21 @@ Thus, when $ A $ and $ B $ have no common eigenvalues, the equation $ A X - X B 
 
 Thus, $ AX - XB = C $ has a unique solution for all $ C \in \mathbb{R}^{m \times n} $ $ \Leftrightarrow $ $ A $ and $ B $ have no common eigenvalues.
 
-\section{}
+\end{solution}
+
+
+\begin{problem}
+
+\noindent Let $ X $ be a random variable and $ f $ be a convex function on $ \mathbb{R} $. Suppose that both $ X $ and $ f(X) $ have finite expectations. Prove Jensen's inequality:
+$$
+f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)].
+$$
+
+\end{problem}
+
+\begin{solution}
+
+
 Suppose the tangent line equation of the function $ f(x) $ at $ x = x_0 $ is:$l(x)=ax + b$, where $ a = f'(x_0) $ and $ b = f(x_0)-ax_0 $.
 
 Since $f$ is a convex functions, it satisfies:
@@ -1040,21 +1449,35 @@ $$
 
 Taking expectations on both sides simultaneously, we have:
 $$
-E[f(x)]\geq E[ax + b]=aE[x]+b
+\mathbb{E}[f(x)]\geq \mathbb{E}[ax + b]=a\mathbb{E}[x]+b
 $$
 
-We take $ x_0 = E[x] $, and correspondingly $ a = f'(x_0) $, $ b = f(x_0)-ax_0 $. Substituting into the above formula at this time, we have:
+We take $ x_0 = \mathbb{E}[x] $, and correspondingly $ a = f'(x_0) $, $ b = f(x_0)-ax_0 $. Substituting into the above formula at this time, we have:
 $$
-E[f(x)]\geq aE[x]+b = ax_0 + b = f(x_0)=f(E[x])
+\mathbb{E}[f(x)]\geq a\mathbb{E}[x]+b = ax_0 + b = f(x_0)=f(\mathbb{E}[x])
 $$
 
-\section{}
+\end{solution}
+
+\begin{problem}
+
+\noindent For any convex function $ f $ on $[0,1]$, prove that
+$$
+f\left( \frac{1}{2} \right) \leq \int_0^1 f(x) \, dx \leq \frac{1}{2} \bigl[ f(0) + f(1) \bigr].
+$$
+
+\end{problem}
+
+\begin{solution}
+
+
 $f$ is a convex function on $[0,1]$, $\forall x,y \in [0,1]$ and $t\in[0,1]$, we have
 $$
 f(tx+(1-t)y)\leq tf(x)+(1-t)f(y)
 $$
 
-Let $x=0, y=1, t=\frac{1}{2}$, we can get$f(\frac{1}{2})\leq \frac{1}{2}f(0)+\frac{1}{2}f(1)$
+Let $x=0, y=1, t=\frac{1}{2}$, we can get
+$$f(\frac{1}{2})\leq \frac{1}{2}f(0)+\frac{1}{2}f(1)$$
 
 $$
 f(x) \geq f(0) + \frac{f(1) - f(0)}{1-0} x = f(0) + (f(1) - f(0)) x.
@@ -1078,7 +1501,7 @@ $$
 $$
 Calculating the right-hand side integral:
 $$
-	\int_{0}^{1} (1-x) f(0) + x f(1)  dx =\frac{1}{2}f(0)+\frac{1}{2}f(1)
+\int_{0}^{1} (1-x) f(0) + x f(1)  dx =\frac{1}{2}f(0)+\frac{1}{2}f(1)
 $$
 So
 $$
@@ -1089,7 +1512,21 @@ $$
 f(\frac{1}{2}) \leq \int_{0}^{1} f(x) dx \leq \frac{1}{2} [f(0) + f(1)]
 $$
 
-\section{}
+\end{solution}
+
+
+
+\begin{problem}
+
+\noindent Let $ X $ be a random variable. Suppose that $ f $ and $ g $ are two increasing functions such that $ f(X) $ and $ g(X) $ are both bounded. Prove
+$$
+\mathbb{E}\bigl[ f(X) g(X) \bigr] \geq \mathbb{E}\bigl[ f(X) \bigr] \mathbb{E}\bigl[ g(X) \bigr].
+$$
+
+\end{problem}
+
+\begin{solution}
+
 
 Consider two independent and identically distributed random variables $ X $ and $ Y $, both of which have the same distribution as $ X $. Since $ f $ and $ g $ are increasing functions, for any real numbers $ x $ and $ y $, we have:
 
@@ -1107,7 +1544,7 @@ $$
 $$
 
 Expand the left - hand side, that is, 
-$\mathbb{E}[f(X)g(X)-f(X)g(Y)-f(Y)g(X)+f(Y)g(Y)]$
+$$\mathbb{E}[f(X)g(X)-f(X)g(Y)-f(Y)g(X)+f(Y)g(Y)]$$
 
 Since $ X $ and $ Y $ are independent and and identical distribution:
 $$
@@ -1135,12 +1572,24 @@ $$
 \mathbb{E}[f(X)g(X)] \geq \mathbb{E}[f(X)]\mathbb{E}[g(X)]
 $$
 
-\section{}
 
-\subsection*{Proof 1} 
+\end{solution}
+
+
+\begin{problem}
+	
+\noindent Suppose that $ \{a_k\} $ and $ \{b_k\} $ are monotone real sequences with the same monotonicity. Let $ n $ be a nonnegative integer. Prove that
+$$
+\sum_{k=0}^n a_k b_{n-k} \leq \frac{1}{n+1} \left( \sum_{k=0}^n a_k \right) \left( \sum_{k=0}^n b_k \right) \leq \sum_{k=0}^n a_k b_k.
+$$
+Give as many proofs as possible.
+	
+\end{problem}
+
+\begin{solution}
+
 
 From the Chebyshev's inequality we can obtain that for two sequences $\{a_k\}$ and $\{b_k\}$ that are monotonic in the same direction, we have:
-
 $$
 \frac{1}{n + 1}\sum_{k = 0}^{n}a_kb_k\geq\left(\frac{1}{n + 1}\sum_{k = 0}^{n}a_k\right)\left(\frac{1}{n + 1}\sum_{k = 0}^{n}b_k\right)
 $$
@@ -1150,40 +1599,131 @@ $$
 $$
 
 Consider $\{a_k\}$ and $\{b_{n - k}\}$. Since  $\{b_k\}$ and $\{a_k\}$ are monotonic in the same direction, if $\{b_k\}$ is increasing, then $\{b_{n - k}\}$ is decreasing. At this time, $\{a_k\}$ and $\{b_{n - k}\}$ are monotonic in opposite directions. According to Chebyshev's inequality, sequences that are monotonic in opposite directions satisfy:
-
 $$
 \frac{1}{n + 1}\sum_{k = 0}^{n}a_kb_{n - k}\leq\left(\frac{1}{n + 1}\sum_{k = 0}^{n}a_k\right)\left(\frac{1}{n + 1}\sum_{k = 0}^{n}b_{n - k}\right)
 $$
 
 Since $\sum_{k = 0}^{n}b_{n - k}=\sum_{k = 0}^{n}b_k$, the right - hand side becomes:
-
 $$\left(\frac{1}{n + 1}\sum_{k = 0}^{n}a_k\right)\left(\frac{1}{n + 1}\sum_{k = 0}^{n}b_k\right)
 $$
 So
 $$\sum_{k = 0}^{n}a_kb_{n - k}\leq\frac{1}{n + 1}\left(\sum_{k = 0}^{n}a_k\right)\left(\sum_{k = 0}^{n}b_k\right)$$
 
-\section{}
+\end{solution}
 
-\textcolor{red}{Failed to prove it}
 
-\subsection*{Consider the Converse Proposition} 
+
+
+
+\begin{problem}
+
+\noindent Prove that a sequence $ \{x_k\} \subset \mathbb{R} $ converges if $ \sum_{|x_k| > \epsilon} |x_k - x_{k+1}| < \infty $ for all $ \epsilon > 0 $. Is the converse proposition true?
+
+\end{problem}
+
+\begin{solution}
+
+
+$\sum_{k = 1}^{\infty}|x_k - x_{k + 1}| < \infty$. We need to prove that $\{x_n\}$ converges. Since $\mathbb{R}$ is complete, a sequence converges if and only if it is a Cauchy sequence. 
+
+Suppose $m > n$, then:
+$$
+|x_m - x_n|=\left|\sum_{k = n}^{m - 1}(x_k - x_{k + 1})\right|\leq\sum_{k = n}^{m - 1}|x_k - x_{k + 1}|
+$$
+
+Since $\sum_{k = 1}^{\infty}|x_k - x_{k + 1}|<\infty$, its partial sum sequence is a Cauchy sequence. Therefore, for any $\epsilon > 0$, there exists $N\in\mathbb{N}$ such that when $m > n\geq N$,
+$$
+\sum_{k = n}^{m - 1}|x_k - x_{k + 1}|<\epsilon
+$$
+
+Thus,
+$$
+|x_m - x_n|\leq\sum_{k = n}^{m - 1}|x_k - x_{k + 1}|<\epsilon
+$$
+
+\textbf{Consider the Converse Proposition} 
 
 The converse proposition is: If the sequence $ \{x_k\} $ converges, then $ \sum_{|x_k| > \epsilon} |x_k - x_{k + 1}| < \infty $ holds for all $ \epsilon > 0 $.
 
-Suppose $ \{x_k\} $ converges to $ a $. Then for any $ \epsilon > 0 $, there exists $ N>0 $ such that for all $ k > N $, $ |x_k - a| < \epsilon/2 $. Therefore, for $ k > N $, we have:
+Define the sequence $\{x_n\}$: $x_n = (- 1)^m\frac{1}{m}$, for $2^m\leq n < 2^{m + 1}$.
+
+As $n\to\infty$, $m\to\infty$, and $|(- 1)^m\frac{1}{m}|=\frac{1}{m}\to0$. For any $\epsilon>0$, take $M$ such that $\frac{1}{M}<\epsilon$, and let $N = 2^M$. Then when $n\geq N$, there exists $m\geq M$ such that $2^m\leq n < 2^{m + 1}$, so $|x_n| = \frac{1}{m}\leq\frac{1}{M}<\epsilon$. Thus, $x_n\to0$.
+
+The sequence is constant on the interval $[2^m, 2^{m + 1})$. Therefore, when $k\neq 2^{m + 1}-1$, $|x_k - x_{k + 1}| = 0$. 
+
+When $k = 2^{m + 1}-1$, we have $x_k = (- 1)^m\frac{1}{m}$, $x_{k + 1}=(- 1)^{m + 1}\frac{1}{m + 1}$
+Then,
+$$
+|x_k - x_{k + 1}|=\left|(- 1)^m\frac{1}{m}-(- 1)^{m + 1}\frac{1}{m + 1}\right|=\left|(- 1)^m\left(\frac{1}{m}+\frac{1}{m + 1}\right)\right|=\frac{1}{m}+\frac{1}{m + 1}
+$$
+
+Therefore
+$$
+\sum_{k = 1}^{\infty}|x_k - x_{k + 1}|=\sum_{m = 1}^{\infty}|x_{2^{m + 1}-1}-x_{2^{m + 1}}|=\sum_{m = 1}^{\infty}\left(\frac{1}{m}+\frac{1}{m + 1}\right)
+$$
+
+Since $\sum_{m = 1}^{\infty}\frac{1}{m}=\infty$ and $\sum_{m = 1}^{\infty}\frac{1}{m + 1}=\sum_{m = 2}^{\infty}\frac{1}{m}=\infty$, we have:
 
 $$
-|x_k - x_{k + 1}| \leq |x_k - a| + |a - x_{k + 1}| < \epsilon
+\sum_{m = 1}^{\infty}\left(\frac{1}{m}+\frac{1}{m + 1}\right)\geq\sum_{m = 1}^{\infty}\frac{1}{m}=\infty
 $$
 
-From the condition, we can get $|x_k - x_{k + 1}| < \epsilon$,  since $ \{x_k\} $ converges, $\exists N_1>0 $ such that when $k>N$, we have $x_k<\epsilon$. Therefore , $ \sum_{|x_k| > \epsilon} |x_k - x_{k + 1}| < \infty $ has only finitely many terms. So $ \sum_{|x_k| > \epsilon} |x_k - x_{k + 1}| < \infty $
+Thus, $\sum_{k = 1}^{\infty}|x_k - x_{k + 1}|=\infty$.
 
-\section{}
+In conclusion, the converse proposition does not hold.
+
+\end{solution}
+
+
+
+
+
+
+\begin{problem}
+
+\noindent Let $ \{a_k\} $ and $ \{b_k\} $ be nonnegative real sequences. For each index $ k \geq 0 $, one of the following two conditions holds:
+\begin{itemize}
+	\item[(a)] $ a_k \leq b_k $ and $ a_{k+1} = 2a_k $;
+	\item[(b)] $ a_{k+1} = a_k / 2 $.
+\end{itemize}
+Prove that
+$$
+\sum_{k=0}^\infty a_k \leq 2a_0 + 4 \sum_{k=0}^\infty b_k.
+$$
+
+\end{problem}
+
+\begin{solution}
+
 \textcolor{red}{Failed to prove it}
 
-\section{}
+\end{solution}
 
-\subsection*{(a)} 
+
+
+
+
+\begin{problem}
+
+\noindent Suppose that $ X \subset \mathbb{R}^n $ is a compact set, and $ T : X \to X $ is a continuous operator satisfying
+$$
+\| T(x) - T(y) \| < \| x - y \| \quad \text{for all distinct } x, y \in X.
+$$
+\begin{itemize}
+	\item[(a)] Show that $ T $ has a unique fixed point.
+	\item[(b)] For any $ x_0 \in X $, show that the fixed point iteration
+	$$
+	x_{k+1} = T(x_k)
+	$$
+	converges to the fixed point.
+\end{itemize}
+
+\end{problem}
+
+\begin{solution}
+
+
+\textbf{(a)} 
 
 Consider the function $ f(\mathbf{x}) = \|T(\mathbf{x}) - \mathbf{x}\| $. Since $ T $ is continuous, $ f(\mathbf{x}) $ is continuous on the compact set $ X $. $ f $ attains its minimum value on $ X $. Let the minimum value be attained at $ \mathbf{x}^* \in X $, i.e., $ f(\mathbf{x}^*) = d \geq 0 $.  
 
@@ -1195,7 +1735,9 @@ Suppose there exist two distinct fixed points $ \mathbf{x}^* $ and $ \mathbf{y}^
 
 In conclusion, $ T $ has exactly one fixed point on $ X $.  
 
-\subsection*{(b)} 
+\vspace{12pt}
+
+\textbf{(b)} 
 Since $T$ satisfies $\|T(x) - T(y)\| < \|x - y\|$, we have:
 $$
 \|x_{k + 1} - x_k\| = \|T(x_k) - T(x_{k - 1})\| < \|x_k - x_{k - 1}\|
@@ -1229,7 +1771,22 @@ $$
 
 From the result of problem (a), the fixed point of $ T $ on $ X $ is unique. Therefore, no matter how the initial point $ x_0 $ is chosen, the iterative sequence will converge to this unique fixed point $ x^* $.
 
-\section{}
+\end{solution}
+
+
+
+
+
+
+\begin{problem}
+
+\noindent Let $ f : [0,1] \to [0,1] $ be a continuous function. Consider the fixed point iteration $ x_{k+1} = f(x_k) $ with a certain $ x_0 \in [0,1] $. If $ x_k - x_{k+1} \to 0 $, is it guaranteed that $ \{x_k\} $ converges?
+
+\end{problem}
+
+\begin{solution}
+
+
 $f: [0,1] \to [0,1]$ is a continuous function. The sequence $ x_k $ is bounded, and by the Bolzano-Weierstrass theorem, we can know that there is a convergent subsequence $ x_{k_j} $.
 
 Let $ x_{k_j} \rightarrow a \in [0,1]$. Since $f$ is a continuous function, $ x_{k_j+1}=f(x_{k_j})\rightarrow a$. Apply $x_k-x_{k+1}\rightarrow 0$ to the subsequence, we can get $f(a)=a$, $a$ is a fixed point of $f$
@@ -1245,11 +1802,30 @@ $$
 |x_{k+1}-b|\geq|a-b|- |x_{k+1}-a|>\frac{d}{3}
 $$
 
-For $k>N$, we have$|x_k - a| < d = |a - b|, \quad |x_k - b| > \frac{d}{3}$. 
+For $k>N$, we have$|x_k - a| < d = |a - b|, \quad |x_k - b| >  d/3$. 
 
-If the sequence $ x_k $ converges to $ b $, then there exists a sufficiently large $ k $ such that $ |x_k - b| < d/3 $, which contradicts $ |x_k - b| > \frac{d}{3} $. Therefore, $ x_k $ have only one limit point. Sequence $x_k$ convergence
+If the sequence $ x_k $ converges to $ b $, then there exists a sufficiently large $ k $ such that $ |x_k - b| < d/3 $, which contradicts $ |x_k - b| >  d/3 $. Therefore, $ x_k $ have only one limit point. Sequence $x_k$ convergence
 
-\section{}
+\end{solution}
+
+
+
+
+\begin{problem}
+
+\noindent Suppose that $ f $ is a twice differentiable function on $[0,1]$ satisfying
+$$
+f'(0) = 0 = f'(1).
+$$
+Show that there exists a number $ \xi \in (0,1) $ such that
+$$
+|f''(\xi)| = 4|f(0) - f(1)|.
+$$
+
+\end{problem}
+
+\begin{solution}
+
 Since $f$ is a twice differentiable function, ee can perform a Taylor expansion to the second derivative term for $f$ at $x=0$ and $x=1$, respectively.
 
 Taylor unfolds at $x=0$:
@@ -1265,7 +1841,7 @@ $$
 Substitute $x = \frac{1}{2}$ 
 
 $$
-f( \frac{1)}{2}=f(0)+\frac{f''(\eta_1)}{8} 
+f( \frac{1}{2})=f(0)+\frac{f''(\eta_1)}{8} 
 $$ 
 $$
 f( \frac{1}{2})=f(1)+\frac{f''(\eta_2)}{8} 
@@ -1296,24 +1872,66 @@ If $f''(\eta_1) \geq 4|f(0)-f(1)|$ and $f''(\eta_2) \geq 4|f(0)-f(1)|$, $f''(\et
 
 If $f''(\eta_1) \leq -4|f(0)-f(1)|$ and $f''(\eta_2) \leq -4|f(0)-f(1)|$, we can come to the same conclusion.
 
-\section{}
-
-Let $ m = \min_{x \in [0,1]} f(x) $. Suppose $ m > 2 $. Then for any $ x \in [0,1] $, we have $ f(x) \geq m > 2 $. According to the given condition, the integral inequality is:
-
-$$\int_{0}^{x} [f(t)]^2 dt \leq f(x)$$
-
-Since $ f(t) \geq m $, the lower bound of the integral is:
-
-$$\int_{0}^{x} m^2 dt = m^2 x \leq f(x)$$
-
-Let $ x = 1 $, we have $ m^2 \leq f(1) \geq m $, that is, $ m^2 \leq m $, which contradicts $ m > 2 $. Therefore, the assumption does not hold, so $ m \leq 2 $.
+\end{solution}
 
 
-\section{}
+
+
+
+\begin{problem}
+
+\noindent Let $ f : \mathbb{R} \to \mathbb{R} $ be a continuous function.
+\begin{itemize}
+	\item[(a)] Suppose that $ \lim_{k \to \infty} f(k + x) \to 0 $ for all $ x \in \mathbb{R} $. Is it guaranteed that $ f(x) \to 0 $ when $ x \to +\infty $?
+	\item[(b)] Suppose that $ \lim_{k \to \infty} f(kx) \to 0 $ for all $ x > 0 $. Is it guaranteed that $ f(x) \to 0 $ when $ x \to +\infty $?
+	
+\end{itemize}
+
+\end{problem}
+
+\begin{solution}
 
 \textcolor{red}{Failed to prove it}
 
-\section{}
+
+\end{solution}
+
+
+\begin{problem}
+
+\noindent Suppose that $ f $ is a continuous function over $[0,1]$ and
+$$
+\int_0^x [f(t)]^2 dt \leq f(x) \quad \text{for all } x \in [0,1].
+$$
+\begin{itemize}
+	\item[(a)] Show that
+	$$
+	\min_{x \in [0,1]} f(x) \leq 2.
+	$$
+	\item[(b)] Is the bound in (a) tight or not?
+\end{itemize}
+
+\end{problem}
+
+\begin{solution}
+
+\textcolor{red}{Failed to prove it}
+
+\end{solution}
+
+
+
+\begin{problem}
+
+\noindent Show that
+$$
+\min_{\|x\|_2 = 1} \|Ax\|_\infty \leq \frac{1}{n} \|A\|_F
+$$
+for all matrix $ A \in \mathbb{R}^{n \times n} $, or find a counterexample.
+
+\end{problem}
+
+\begin{solution}
 
 Consider the Singular Value Decomposition of $ A $:
 $$
@@ -1340,7 +1958,7 @@ From the singular value decomposition, we know that:
 $$
 \|A\mathbf{x}\|_2 = \sigma_n
 $$
-  
+
 The Frobenius norm of $ A $ is:
 $$
 \|A\|_F = \sqrt{\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_n^2}
@@ -1370,11 +1988,33 @@ $$
 \min_{\|\mathbf{x}\|_2 = 1} \|A\mathbf{x}\|_\infty \leq \frac{1}{n}\|A\|_F
 $$
 
-\section{}
-
-\textcolor{red}{Failed to prove it}
+\end{solution}
 
 
-adsds 
+
+
+
+\begin{problem}
+
+\noindent Show that there exists a set $ S \subset \mathbb{R}^n $ satisfying the following conditions.
+\begin{itemize}
+	\item[(a)] $ \|x\|_2 = 1 $ for all $ x \in S $.
+	\item[(b)] $ |x^T y| \leq \epsilon $ for all distinct $ x, y \in S $.
+	\item[(c)] The cardinality of $ S $ is at least $ \exp(c n \epsilon^2) $ with a certain absolute constant $ c > 0 $ that you must specify. [An absolute constant is a number that maintains the same value wherever it appears, e.g., $ 1, \pi, $ and $ \log 2 $.]
+\end{itemize}
+In theory, if a set of unit vectors in $ \mathbb{R}^n $ are pairwise orthogonal, then the cardinality of the set cannot exceed $ n $. Use the existence of $ S $ to explain why we cannot rely on such a theory in numerical computations.
+
+\end{problem}
+
+\begin{solution}
+
+
+
+\textcolor{red}{Failed to prove it} fwafafa
+
+
+\end{solution}
+
+
 
 \end{document}
