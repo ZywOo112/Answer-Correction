@@ -1,0 +1,25 @@
+name: Spell Check
+on: [push]
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run cSpell with Action
+        uses: streetsidesoftware/cspell-action@v2
+        with:
+          config: ./.cspell.json
+          strict: true
+          check_dot_files: true
+          incremental_files_only: false
+          
+          
+      - name: Upload spelling report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: spelling-report
+          path: cspell-report.txt    
