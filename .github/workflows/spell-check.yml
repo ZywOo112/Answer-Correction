@@ -20,12 +20,7 @@ jobs:
           "version": "0.2",
           "language": "en",
           "words": [
-            "github",
-            "actions",
-            "workflow",
-            "markdown",
-            "repo",
-            "cspell"
+           "Lipschitz", "Schwarz", "Subgradients", "subgradients", "subgradient", "inequation", "Chernoff", "eigenspaces", "injective", "nilpotent", "Frobenius", "nonsingular", "bijective", "Cayley", "Chebyshev", "Chebyshev's", "Darboux", "Darboux's", "eigenspace"
           ],
           "ignorePaths": [
             "node_modules/**",
