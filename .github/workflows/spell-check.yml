@@ -8,12 +8,38 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0  
 
-    - name: Verify config exists
+    - name: Create cspell config
       run: |
-        ls -la .cspell.json || echo "::error::.cspell.json not found!"
+
+        rm -f .cspell.json || true
+        
+
+        cat << 'EOF' > $GITHUB_WORKSPACE/.cspell.json
+        {
+          "version": "0.2",
+          "language": "en",
+          "words": [
+            "github",
+            "actions",
+            "workflow",
+            "markdown",
+            "repo",
+            "cspell"
+          ],
+          "ignorePaths": [
+            "node_modules/**",
+            "package*.json",
+            "yarn.lock",
+            "*.log",
+            "*.min.*",
+            "**/.git/**"
+          ]
+        }
+        EOF
+        
+        echo "Generated cspell config:"
+        cat $GITHUB_WORKSPACE/.cspell.json
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -24,11 +50,11 @@ jobs:
       run: npm install -g cspell
 
     - name: Run spell check
-      run: | 
- 
+      run: |
+
         cspell "**/*.{md,txt,tex}" \
           --config "$GITHUB_WORKSPACE/.cspell.json" \
           --no-progress \
-          --no-summary
+          --no-summary \
           --relative \
           --must-find-files
