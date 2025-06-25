@@ -12,13 +12,9 @@ jobs:
         
       - name: Configure TeX Live mirror and update
         run: |
-   
           tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
-          
-          tlmgr update --self 
-          
+          tlmgr update --self
           tlmgr update --all
-          
           tlmgr --version
           
       - name: Install fonts
@@ -26,12 +22,12 @@ jobs:
           tlmgr install fandol
           
       - name: Compile LaTeX document 
-        working-directory: "Problem Solutions(Fu Qiang)"
         run: |
+          cd "Problem Solutions(Fu Qiang)"
           latexmk -xelatex -interaction=nonstopmode -file-line-error "Problem Solutions(Fu Qiang).tex"
           
       - name: Upload the generated PDF
         uses: actions/upload-artifact@v4
         with:
-          name: Problem Solutions(Fu Qiang)-PDF
+          name: Problem-Solutions-Fu-Qiang-PDF
           path: "Problem Solutions(Fu Qiang)/Problem Solutions(Fu Qiang).pdf"
