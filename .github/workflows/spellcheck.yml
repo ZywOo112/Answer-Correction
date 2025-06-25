@@ -1,25 +1,12 @@
-name: Spell Check
+name: Spellcheck Action
 on: [push]
 
 jobs:
-  spellcheck:
+  build:
+    name: Spellcheck
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Run cSpell with Action
-        uses: streetsidesoftware/cspell-action@v2
-        with:
-          config: ./.cspell.json
-          strict: true
-          check_dot_files: true
-          incremental_files_only: false
-          
-          
-      - name: Upload spelling report
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: spelling-report
-          path: cspell-report.txt    
+    - uses: actions/checkout@v3
+    - uses: rojopolis/spellcheck-github-actions@0.41.0
+      with:
+        config_path: .github/spellcheck.yml
