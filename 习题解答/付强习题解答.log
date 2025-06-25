@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.9.10)  25 JUN 2025 10:17
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.9.10)  25 JUN 2025 13:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -679,7 +679,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ] [2] [3]
 [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
 [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34]
-[35] [36] [37] [38] [39] [40] (./付强习题解答.aux)
+[35] [36] [37] [38] [39] [40] [41] (./付强习题解答.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2022/07/14>
@@ -688,12 +688,12 @@ Package rerunfilecheck Info: File `付强习题解答.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16558 strings out of 476720
- 356641 string characters out of 5801048
+ 16560 strings out of 476720
+ 356703 string characters out of 5801048
  1933842 words of memory out of 5000000
- 38333 multiletter control sequences out of 15000+600000
+ 38335 multiletter control sequences out of 15000+600000
  574014 words of font info for 115 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 93i,14n,97p,615b,384s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,14n,97p,611b,385s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 付强习题解答.pdf (40 pages).
+Output written on 付强习题解答.pdf (41 pages).

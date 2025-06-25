@@ -280,17 +280,28 @@ $$ \mathcal{L}(t)=\{x \in \mathbb{R}^n: f(x) \leq t\} $$
 	
 For $\forall t < t_0$, we can get $\mathcal{L}(t)\subset \mathcal{L}(t_0)$. Because of the Boundedness of $\mathcal{L}(t_0)$, $\mathcal{L}(t)$ is bounded. Therefore, we We just need to prove $\forall t > t_0$, $\mathcal{L}(t)$ is bounded.
 
-Assume that $\exists t_1 > t_0$, such that $\mathcal{L}(t_1)$ is unbounded, namely $\exists \{\mathbf{x}_k \} \subset \mathcal{L}(t_1)$, such that, $\| \mathbf{x}_k\|_2 \rightarrow \infty$. Consider that $\mathbf{x}_0 \in \mathcal{L}(t_0)$ and $\mathbf{x}_k$, let 
+Assume exists \( t_1 > t_0 \) such that \( \mathcal{L}(t_1) \) is unbounded. Then there exists a sequence \( \{x_k\} \subset \mathcal{L}(t_1) \) satisfying \( \|x_k\|_2 \to \infty \). Take \( x_0 \in \mathcal{L}(t_0) \).
 
-$$\mathbf{y}=\lambda\mathbf{x}_0+(1 - \lambda)\mathbf{x}_k , \quad \lambda\in(0,1) 
-$$
+Consider the direction vectors \( \mathbf{d}_k=\frac{\mathbf{x}_k - \mathbf{x}_0}{\|\mathbf{x}_k - \mathbf{x}_0\|_2} \). Since \( \|\mathbf{d}_k\|_2 = 1 \) and the unit sphere is compact, there exists a subsequence that converges to a unit vector \( \mathbf{d} \)，without loss of generality, assume $ \mathbf{d}_k $ converges to \( \mathbf{d} \) .
 
-According to convexity:
-$$
-f(\mathbf{y}) \leq\lambda f(\mathbf{x}_0) +(1-\lambda)f(\mathbf{x}_k)\leq\lambda t_0+(1 - \lambda)t_1
-$$
+Fix \( \alpha>0 \), and let \( \theta_k=\frac{\alpha}{\|\mathbf{x}_k - \mathbf{x}_0\|_2} \). When \( k \) is sufficiently large, \( \theta_k\in(0, 1) \) and \( \theta_k\to0 \). Let:
+\[\mathbf{y}_k=(1 - \theta_k)\mathbf{x}_0+\theta_\mathbf{x}x_k=\mathbf{x}_0+\alpha \mathbf{d}_k\]
 
-\textcolor{red}{ Let $ \lambda = \frac{k-1}{k} $, $ f(\mathbf{y}) \leq \frac{k-1}{k}t_0+ \frac{t_1}{k}$. When $k \rightarrow \infty $, $f(\mathbf{y}) \leq t_0$, namely $\mathbf{y}$ is bounded.} But when $k \rightarrow \infty $, $ \|\mathbf{y}\|_2 \rightarrow \| \mathbf{x}_k\|_2 \rightarrow \infty $, this contradicts $\mathbf{y}$ is bounded. Therefore, $\mathcal{L}(t)$ is bounded, when $t_1 > t_0$.
+By convexity:
+\[f(\mathbf{y}_k)\leq(1 - \theta_k)t_0+\theta_kt_1=t_0+\theta_k(t_1 - t_0)\]
+
+For any \( \epsilon>0 \), when \( k \) is large enough, \( \theta_k<\frac{\epsilon}{t_1 - t_0} \). Thus:
+\[f(\mathbf{y}_k)<t_0+\epsilon\implies y_k\in\mathcal{L}(t_0 + \epsilon)\]
+
+From \( \mathbf{d}_k\to \mathbf{d} \), we know that \( \mathbf{y}_k\to \mathbf{y} = \mathbf{x}_0+\alpha \mathbf{d} \). Using the continuity of \( f \) :
+\[f(\mathbf{y})=\lim f(\mathbf{y}_k)\leq t_0+\epsilon\]
+
+Due to the arbitrariness of \( \epsilon>0 \), we get \( f(\mathbf{y})\leq t_0 \), that is, \( \mathbf{y}\in\mathcal{L}(t_0) \).
+
+Since \( \alpha>0 \) is arbitrary, the ray \( \{\mathbf{x}_0+\alpha \mathbf{d}:\alpha\geq0\}\subset\mathcal{L}(t_0) \), but this ray is unbounded, which contradicts the boundedness of \( \mathcal{L}(t_0) \).
+
+
+Therefore, for all $t>t_0$, $\mathcal{L}(t)$ is bounded.
 
 \end{solution}
 
@@ -367,12 +378,12 @@ $$
 t^2 \|\ \nabla f(\mathbf{x}) \|_2^2 \leq 2t \langle\nabla f(\mathbf{x}), \mathbf{x} - \mathbf{x}^* \rangle
 $$
 
-Becasue of $ t>0 $, collating the above inequation, that is
+Because of $ t>0 $, collating the above inequation, that is
 $$
 t \|\ \nabla f(\mathbf{x}) \|_2^2 \leq 2 \langle\nabla f(\mathbf{x}), \mathbf{x} - \mathbf{x}^* \rangle
 $$
 
-$f$ is convex function, and $\nabla f(\mathbf{x})$ is $L$-Lipschitz continous. From the question(1), we know that
+$f$ is convex function, and $\nabla f(\mathbf{x})$ is $L$-Lipschitz continuous. From the question(1), we know that
 $$
 \frac{1}{L} \|\nabla f(\mathbf{x}) - \nabla f(\mathbf{y})\|_2^2 \leq \langle \nabla f(\mathbf{x})-\nabla f(\mathbf{y}), \mathbf{x} - \mathbf{y} \rangle
 $$
@@ -842,7 +853,7 @@ $$
 \|\mathbf{x}\|_{1}=\left(|x_1|^{1}+|x_2|^{1}\right)^2
 $$
 
-Easy to konw that $ \|A\|_{1}=1$
+Easy to know that $ \|A\|_{1}=1$
 
 When $ p = 2 $:
 $$
@@ -1933,6 +1944,8 @@ for all matrix $ A \in \mathbb{R}^{n \times n} $, or find a counterexample.
 
 \begin{solution}
 
+\textbf{Note:} Here we can only prove $ \min_{\|\mathbf{x}\|_2=1}\|A\mathbf{x}\|_\infty \leq \frac{\|A\|_F}{\sqrt{n}}$.
+
 Consider the Singular Value Decomposition of $ A $:
 $$
 A = U\Sigma V^T
@@ -1974,19 +1987,13 @@ $$
 \|A\mathbf{x}\|_\infty \leq \|A\mathbf{x}\|_2 = \sigma_n
 $$
 $$
-\sigma_n \leq \frac{\|A\|_F}{\sqrt{n}} \leq \frac{\|A\|_F}{n}
-$$
-So
-$$
-\|A\mathbf{x}\|_\infty \leq \frac{\|A\|_F}{n}
+\sigma_n \leq \frac{\|A\|_F}{\sqrt{n}}
 $$
 
-where $ \mathbf{x} = \mathbf{v}_n $ is a unit vector.
+Therefore,
 
-In conclusion, for any $ A \in \mathbb{R}^{n \times n} $, there exists a unit vector $ \mathbf{x} $ such that:
-$$
-\min_{\|\mathbf{x}\|_2 = 1} \|A\mathbf{x}\|_\infty \leq \frac{1}{n}\|A\|_F
-$$
+$$ \min_{\|\mathbf{x}\|_2=1}\|A\mathbf{x}\|_\infty \leq \frac{\|A\|_F}{\sqrt{n}}$$
+
 
 \end{solution}
 
@@ -2010,7 +2017,7 @@ In theory, if a set of unit vectors in $ \mathbb{R}^n $ are pairwise orthogonal,
 
 
 
-\textcolor{red}{Failed to prove it} fwafafa
+\textcolor{red}{Failed to prove it} 
 
 
 \end{solution}
